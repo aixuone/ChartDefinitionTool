@@ -3,7 +3,7 @@ package com.tygps.chart.domain;
 public class ColumnValue{
     private String columnID;
     private String columnDispType;
-    private ChartPolymer columnPolymer;
+    private String columnPolymer;
 
     public String getColumnID() {
         return columnID;
@@ -21,11 +21,11 @@ public class ColumnValue{
         this.columnDispType = columnDispType;
     }
 
-    public ChartPolymer getColumnPolymer() {
+    public String getColumnPolymer() {
         return columnPolymer;
     }
 
-    public void setColumnPolymer(ChartPolymer columnPolymer) {
-        this.columnPolymer = columnPolymer;
+    public void setColumnPolymer(String columnPolymer) {
+        this.columnPolymer = ChartPolymer.valueOf(columnPolymer).toString();
     }
 }

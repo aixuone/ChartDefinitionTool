@@ -1,14 +1,15 @@
 package com.tygps.chart.service;
 
 import com.tygps.chart.dao.ChartDao;
+import com.tygps.chart.domain.ChartDefinition;
 import com.tygps.chart.domain.ChartRelatedColumn;
 import com.tygps.chart.domain.RelatedColumn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ChartService {
@@ -16,10 +17,12 @@ public class ChartService {
     @Autowired
     private ChartDao chartDao;
 
-    public Map saveChartDefinition() {
+    @Transactional(rollbackFor = Exception.class)
+    public String saveChartDefinition(ChartDefinition chart) {
 
+        String chartID = chartDao.insertChartDefinition(chart);
 
-        return new HashMap();
+        return chartID;
 
     }
 

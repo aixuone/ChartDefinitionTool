@@ -1,6 +1,5 @@
 package com.tygps.chart.web;
 
-import com.tygps.chart.domain.Chart;
 import com.tygps.chart.domain.ChartDefinition;
 import com.tygps.chart.domain.ChartRelatedColumn;
 import com.tygps.chart.domain.RelatedColumn;
@@ -13,11 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class ChartController {
@@ -27,12 +22,14 @@ public class ChartController {
 
 
     @RequestMapping(value ="/charts", method = RequestMethod.POST)
-    public String saveChartDefinition(@RequestBody ChartDefinition chart ){
+    public ChartResponse saveChartDefinition(@RequestBody ChartDefinition chart ){
 
 
-        System.out.println(chart);
+        System.out.println("POST请求：保存表单定义");
 
-        return "save charts";
+        String chartID = chartService.saveChartDefinition(chart);
+
+        return ChartUtil.returnSuccessResponse(chartID);
     }
 
     @RequestMapping(value = "/charts/columns/relation", method = RequestMethod.GET)

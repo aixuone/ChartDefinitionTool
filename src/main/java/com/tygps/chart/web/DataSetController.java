@@ -8,11 +8,7 @@ import com.tygps.chart.tools.ChartUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class DataSetController {
@@ -32,11 +28,11 @@ public class DataSetController {
 
     @RequestMapping(value="/dataSets/{dataSetID}/columns", method = RequestMethod.GET)
     @ResponseBody
-    public List<DWFDataSetColumn> getColunms(@PathVariable String dataSetID){
+    public ChartResponse getColunms(@PathVariable String dataSetID){
         System.out.println("GET请求：获取数据集字段。dataSetID="+dataSetID);
 
         List<DWFDataSetColumn> columns = dataSetService.getColumns(dataSetID);
-        return columns;
+        return ChartUtil.returnSuccessResponse(columns);
     }
 
     @Autowired

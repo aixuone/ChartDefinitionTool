@@ -9,6 +9,7 @@ import java.util.Map;
 public class ChartDefinition {
     private String chartName;
     private String chartTheme;
+    private String chartType;
     private String dataSetID;
     private List<Map> columnValue;
     private List<ColumnValue> columnValues;
@@ -136,11 +137,17 @@ public class ChartDefinition {
             ColumnValue tmp = new ColumnValue();
             tmp.setColumnID((String) map.get(ChartGC.COLUMN_ID));
             tmp.setColumnDispType((String) map.get(ChartGC.COLUMN_DISP_TYPE));
-            tmp.setColumnPolymer(ChartPolymer.valueOf((String) map.get(ChartGC.COLUMN_POLYMER)));
+            tmp.setColumnPolymer((String) map.get(ChartGC.COLUMN_POLYMER));
             columnValues.add(tmp);
         }
     }
 
+    public String getChartType() {
+        return chartType;
+    }
 
+    public void setChartType(String chartType) {
+        this.chartType = chartType;
+    }
 }
 

@@ -17,6 +17,6 @@ public class ColumnAxis {
     }
 
     public void setColumnPolymer(String columnPolymer) {
-        this.columnPolymer = columnPolymer;
+        this.columnPolymer = ChartPolymer.valueOf(columnPolymer).toString();
     }
 }
