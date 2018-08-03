@@ -15,7 +15,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<h1 class="samples">
 		CKEditor &mdash; Posted Data
 	</h1>
-	<table border="1" cellspacing="0" dataSetID="outputSample">
+	<table border="1" cellspacing="0" id="outputSample">
 		<colgroup><col width="120"></colgroup>
 		<thead>
 			<tr>
@@ -46,12 +46,12 @@ if (!empty($_POST))
 }
 ?>
 	</table>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
 		</p>
 	</div>

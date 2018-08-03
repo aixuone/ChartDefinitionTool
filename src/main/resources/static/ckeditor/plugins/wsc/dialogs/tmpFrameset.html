@@ -7,7 +7,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script dataSetType="text/javascript">
+	<script type="text/javascript">
 		(function() {
 			function doLoadScript(url) {
 				if (!url) {
@@ -16,7 +16,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 				var s = document.createElement("script");
 
-				s.dataSetType = "text/javascript";
+				s.type = "text/javascript";
 				s.src = url;
 				document.getElementsByTagName("head")[0].appendChild(s);
 
@@ -52,10 +52,10 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 	</script>
 </head>
 
-<frameset dataSetID="itFrameset" border="0" rows="30,*,*,0">
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="2" src="" dataSetName="navbar"></frame>
-    <frame scrolling="auto" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="0" src="" dataSetName="mid"></frame>
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" dataSetName="bot"></frame>
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" dataSetName="spellsuggestall"></frame>
+<frameset id="itFrameset" border="0" rows="30,*,*,0">
+    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="2" src="" name="navbar"></frame>
+    <frame scrolling="auto" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="0" src="" name="mid"></frame>
+    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="bot"></frame>
+    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="spellsuggestall"></frame>
 </frameset>
 </html>

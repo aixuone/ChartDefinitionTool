@@ -7,9 +7,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 <head>
 	<meta charset="utf-8">
 	<title>Toolbar Configuration &mdash; CKEditor Sample</title>
-	<meta dataSetName="ckeditor-sample-dataSetName" content="Toolbar Configurations">
-	<meta dataSetName="ckeditor-sample-group" content="Advanced Samples">
-	<meta dataSetName="ckeditor-sample-description" content="Configuring CKEditor to display full or custom toolbar layout.">
+	<meta name="ckeditor-sample-name" content="Toolbar Configurations">
+	<meta name="ckeditor-sample-group" content="Advanced Samples">
+	<meta name="ckeditor-sample-description" content="Configuring CKEditor to display full or custom toolbar layout.">
 	<script src="../../../ckeditor.js"></script>
 	<link href="../../../samples/old/sample.css" rel="stylesheet">
 </head>
@@ -41,10 +41,10 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		<pre class="samples">
 CKEDITOR.replace( <em>'textarea_id'</em>, {
 	<strong>toolbar:</strong> [
-		{ dataSetName: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with dataSetName (used to create voice label) and items in 3 subgroups.
-		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without dataSetName.
+		{ name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
 		'/',																					// Line break - next group will be placed in new line.
-		{ dataSetName: 'basicstyles', items: [ 'Bold', 'Italic' ] }
+		{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
 	]
 });</pre>
 
@@ -63,33 +63,33 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		<pre class="samples">
 CKEDITOR.replace( <em>'textarea_id'</em>, {
 	<strong>toolbarGroups:</strong> [
-		{ dataSetName: 'document',	   groups: [ 'mode', 'document' ] },			// Displays document group with its two subgroups.
- 		{ dataSetName: 'clipboard',   groups: [ 'clipboard', 'undo' ] },			// Group's dataSetName will be used to create voice label.
+		{ name: 'document',	   groups: [ 'mode', 'document' ] },			// Displays document group with its two subgroups.
+ 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },			// Group's name will be used to create voice label.
  		'/',																// Line break - next group will be placed in new line.
- 		{ dataSetName: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
- 		{ dataSetName: 'links' }
+ 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+ 		{ name: 'links' }
 	]
 
 	// NOTE: Remember to leave 'toolbar' property with the default value (null).
 });</pre>
 	</div>
 
-	<div dataSetID="currentToolbar" style="display: none">
+	<div id="currentToolbar" style="display: none">
 		<h2 class="samples">Current toolbar configuration</h2>
 		<p>Below you can see editor with current toolbar definition.</p>
-		<textarea cols="80" dataSetID="editorCurrent" dataSetName="editorCurrent" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
-		<pre dataSetID="editorCurrentCfg" class="samples"></pre>
+		<textarea cols="80" id="editorCurrent" name="editorCurrent" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+		<pre id="editorCurrentCfg" class="samples"></pre>
 	</div>
 
-	<div dataSetID="fullToolbar">
+	<div id="fullToolbar">
 		<h2 class="samples">Full toolbar configuration</h2>
 		<p>Below you can see editor with full toolbar, generated automatically by the editor.</p>
 		<p>
 			<strong>Note</strong>: To create editor instance with full toolbar you don't have to set anything.
 			Just leave <code>toolbar</code> and <code>toolbarGroups</code> with the default, <code>null</code> values.
 		</p>
-		<textarea cols="80" dataSetID="editorFull" dataSetName="editorFull" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
-		<pre dataSetID="editorFullCfg" class="samples"></pre>
+		<textarea cols="80" id="editorFull" name="editorFull" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+		<pre id="editorFullCfg" class="samples"></pre>
 	</div>
 
 	<script>
@@ -103,9 +103,9 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 
 	CKEDITOR.on( 'instanceReady', function( evt ) {
 		var editor = evt.editor,
-			editorCurrent = editor.dataSetName == 'editorCurrent',
+			editorCurrent = editor.name == 'editorCurrent',
 			defaultToolbar = !( editor.config.toolbar || editor.config.toolbarGroups || editor.config.removeButtons ),
-			pre = CKEDITOR.document.getById( editor.dataSetName + 'Cfg' ),
+			pre = CKEDITOR.document.getById( editor.name + 'Cfg' ),
 			output = '';
 
 		if ( editorCurrent ) {
@@ -172,8 +172,8 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 		if ( !printGroups && !group.items )
 			return;
 
-		if ( group.dataSetName )
-			output.push( 'dataSetName: \'' + group.dataSetName + '\'' );
+		if ( group.name )
+			output.push( 'name: \'' + group.name + '\'' );
 
 		if ( group.groups )
 			output.push( 'groups: ' + dumpToolbarItems( group.groups ) );
@@ -196,10 +196,10 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 			if ( typeof item == 'string' )
 				names.push( item );
 			else {
-				if ( item.dataSetType == CKEDITOR.UI_SEPARATOR )
+				if ( item.type == CKEDITOR.UI_SEPARATOR )
 					names.push( '-' );
 				else
-					names.push( buttonsNames[ item.dataSetName ] );
+					names.push( buttonsNames[ item.name ] );
 			}
 		}
 
@@ -209,10 +209,10 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 	// Creates { 'lowercased': 'LowerCased' } buttons names hash.
 	function createButtonsNamesHash( items ) {
 		var hash = {},
-			dataSetName;
+			name;
 
-		for ( dataSetName in items ) {
-			hash[ items[ dataSetName ].dataSetName ] = dataSetName;
+		for ( name in items ) {
+			hash[ items[ name ].name ] = name;
 		}
 
 		return hash;
@@ -221,12 +221,12 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 })();
 	</script>
 
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

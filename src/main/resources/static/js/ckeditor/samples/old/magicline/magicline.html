@@ -9,9 +9,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<title>Using Magicline plugin &mdash; CKEditor Sample</title>
 	<script src="../../../ckeditor.js"></script>
 	<link rel="stylesheet" href="../../../samples/old/sample.css">
-	<meta dataSetName="ckeditor-sample-dataSetName" content="Magicline plugin">
-	<meta dataSetName="ckeditor-sample-group" content="Plugins">
-	<meta dataSetName="ckeditor-sample-description" content="Using the Magicline plugin to access difficult focus spaces.">
+	<meta name="ckeditor-sample-name" content="Magicline plugin">
+	<meta name="ckeditor-sample-group" content="Plugins">
+	<meta name="ckeditor-sample-description" content="Using the Magicline plugin to access difficult focus spaces.">
 </head>
 <body>
 	<h1 class="samples">
@@ -44,7 +44,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 				This editor uses a default <strong>Magicline</strong> setup.
 			</p>
 		</div>
-		<textarea cols="80" dataSetID="editor1" dataSetName="editor1" rows="10">
+		<textarea cols="80" id="editor1" name="editor1" rows="10">
 			&lt;table border=&quot;1&quot; cellpadding=&quot;1&quot; cellspacing=&quot;1&quot; style=&quot;width: 100%; &quot;&gt;
 				&lt;tbody&gt;
 					&lt;tr&gt;
@@ -64,7 +64,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 									&lt;td&gt;This table is inside of a cell of another table.&lt;/td&gt;
 								&lt;/tr&gt;
 								&lt;tr&gt;
-									&lt;td&gt;We can dataSetType&amp;nbsp;either before or after it though.&lt;/td&gt;
+									&lt;td&gt;We can type&amp;nbsp;either before or after it though.&lt;/td&gt;
 								&lt;/tr&gt;
 							&lt;/tbody&gt;
 						&lt;/table&gt;
@@ -84,7 +84,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			&lt;/ol&gt;
 
 			&lt;ul&gt;
-				&lt;li&gt;We can dataSetType between the lists...&lt;/li&gt;
+				&lt;li&gt;We can type between the lists...&lt;/li&gt;
 				&lt;li&gt;...thanks to &lt;strong&gt;Magicline&lt;/strong&gt;.&lt;/li&gt;
 			&lt;/ul&gt;
 
@@ -95,7 +95,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			&lt;p&gt;Ut pretium. Vestibulum rutrum in, adipiscing elit. Sed in quam in purus sem vitae pede. Pellentesque bibendum, urna sem vel risus. Vivamus posuere metus. Aliquam gravida iaculis nisl. Nam enim. Aliquam erat ac lacus tellus ac felis.&lt;/p&gt;
 
 			&lt;div style=&quot;border: 2px dashed green; background: #ddd; text-align: center;&quot;&gt;
-			&lt;p&gt;This text is wrapped in a&amp;nbsp;&lt;tt&gt;DIV&lt;/tt&gt;&amp;nbsp;element. We can dataSetType after this element though.&lt;/p&gt;
+			&lt;p&gt;This text is wrapped in a&amp;nbsp;&lt;tt&gt;DIV&lt;/tt&gt;&amp;nbsp;element. We can type after this element though.&lt;/p&gt;
 			&lt;/div&gt;
 		</textarea>
 		<script>
@@ -126,7 +126,7 @@ CKEDITOR.replace( 'editor2', {
 	magicline_color: 'blue'
 });</pre>
 		</div>
-		<textarea cols="80" dataSetID="editor2" dataSetName="editor2" rows="10">
+		<textarea cols="80" id="editor2" name="editor2" rows="10">
 			&lt;table border=&quot;1&quot; cellpadding=&quot;1&quot; cellspacing=&quot;1&quot; style=&quot;width: 100%; &quot;&gt;
 				&lt;tbody&gt;
 					&lt;tr&gt;
@@ -146,7 +146,7 @@ CKEDITOR.replace( 'editor2', {
 									&lt;td&gt;This table is inside of a cell of another table.&lt;/td&gt;
 								&lt;/tr&gt;
 								&lt;tr&gt;
-									&lt;td&gt;We can dataSetType&amp;nbsp;either before or after it though.&lt;/td&gt;
+									&lt;td&gt;We can type&amp;nbsp;either before or after it though.&lt;/td&gt;
 								&lt;/tr&gt;
 							&lt;/tbody&gt;
 						&lt;/table&gt;
@@ -166,7 +166,7 @@ CKEDITOR.replace( 'editor2', {
 			&lt;/ol&gt;
 
 			&lt;ul&gt;
-				&lt;li&gt;We can dataSetType between the lists...&lt;/li&gt;
+				&lt;li&gt;We can type between the lists...&lt;/li&gt;
 				&lt;li&gt;...thanks to &lt;strong&gt;Magicline&lt;/strong&gt;.&lt;/li&gt;
 			&lt;/ul&gt;
 
@@ -177,7 +177,7 @@ CKEDITOR.replace( 'editor2', {
 			&lt;p&gt;Ut pretium. Vestibulum rutrum in, adipiscing elit. Sed in quam in purus sem vitae pede. Pellentesque bibendum, urna sem vel risus. Vivamus posuere metus. Aliquam gravida iaculis nisl. Nam enim. Aliquam erat ac lacus tellus ac felis.&lt;/p&gt;
 
 			&lt;div style=&quot;border: 2px dashed green; background: #ddd; text-align: center;&quot;&gt;
-			&lt;p&gt;This text is wrapped in a&amp;nbsp;&lt;tt&gt;DIV&lt;/tt&gt;&amp;nbsp;element. We can dataSetType after this element though.&lt;/p&gt;
+			&lt;p&gt;This text is wrapped in a&amp;nbsp;&lt;tt&gt;DIV&lt;/tt&gt;&amp;nbsp;element. We can type after this element though.&lt;/p&gt;
 			&lt;/div&gt;
 		</textarea>
 		<script>
@@ -195,12 +195,12 @@ CKEDITOR.replace( 'editor2', {
 
 		</script>
 	</div>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

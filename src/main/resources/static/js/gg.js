@@ -67,41 +67,42 @@ DataObj.prototype = {
 };
 
 // 伪登录
-$(".main-content").show();
-// // 打开登录框
-// $("#logo").modal('show');
-// // 登录按钮绑定事件  隐藏登录框
-// $(function(){	
-// 	$("#logo_btn").click(function(event) {
-// 		event.preventDefault();
-// 		/* Act on the event */
-// 		$("#logo").modal('hide');
-// 		$(".main-content").show();
+// $(".main-content").show();
+// 打开登录框
+$("#logo").modal('show');
+// 登录按钮绑定事件  隐藏登录框
+$(function(){	
+	$("#logo_btn").click(function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$("#logo").modal('hide');
+		$(".main-content").show();
 
-// });
+	})
+});
 
 //登录成功 获取系统DBS列表
-$.ajax({
-	type: 'GET',
-	url: basePath + "dataSets/testUserID",
-	dataType: 'json',
-	success: function(res) { //返回list数据并循环获取
-		// 隐藏loading
-		console.log('获取系统DBS列表成功');
-		console.log(res);
-		$("#_loading").hide();
-		var select = $("#DBSselect");
-		var options = '<option>请选择系统</option>';
-		for (var i = 0; i < res.length; i++) {
-			options += ("<option value='" + res[i].systemID + "'>" +
-				res[i].systemName + "</option>");
-		}
-		select.html(options);
-	},
-	error: function(err) {
-		console.log('获取系统列表失败,原因:' + err);
-	}
-});
+// $.ajax({
+// 	type: 'GET',
+// 	url: basePath + "SYSTEMS",
+// 	dataType: 'json',
+// 	success: function(res) { //返回list数据并循环获取
+// 		// 隐藏loading
+// 		console.log('获取系统DBS列表成功');
+// 		console.log(res);
+// 		$("#_loading").hide();
+// 		var select = $("#DBSselect");
+// 		var options = '<option>请选择系统</option>';
+// 		for (var i = 0; i < res.length; i++) {
+// 			options += ("<option value='" + res[i].systemID + "'>" +
+// 				res[i].systemName + "</option>");
+// 		}
+// 		select.html(options);
+// 	},
+// 	error: function(err) {
+// 		console.log('获取系统列表失败,原因:' + err);
+// 	}
+// });
 
 
 //选择DBS后 出现系统下层表  onchange事件

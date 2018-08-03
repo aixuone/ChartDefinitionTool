@@ -22,7 +22,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 			// Customize editors for headers and tag list.
 			// These editors don't need features like smileys, templates, iframes etc.
-			if ( element.is( 'h1', 'h2', 'h3' ) || element.getAttribute( 'dataSetID' ) == 'taglist' ) {
+			if ( element.is( 'h1', 'h2', 'h3' ) || element.getAttribute( 'id' ) == 'taglist' ) {
 				// Customize the editor configurations on "configLoaded" event,
 				// which is fired after the configuration file loading and
 				// execution. This makes it possible to change the
@@ -36,10 +36,10 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 					// Rearrange the layout of the toolbar.
 					editor.config.toolbarGroups = [
-						{ dataSetName: 'editing',		groups: [ 'basicstyles', 'links' ] },
-						{ dataSetName: 'undo' },
-						{ dataSetName: 'clipboard',	groups: [ 'selection', 'clipboard' ] },
-						{ dataSetName: 'about' }
+						{ name: 'editing',		groups: [ 'basicstyles', 'links' ] },
+						{ name: 'undo' },
+						{ name: 'clipboard',	groups: [ 'selection', 'clipboard' ] },
+						{ name: 'about' }
 					];
 				});
 			}
@@ -202,17 +202,17 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		<p>Click inside of any element below to start editing.</p>
 	</div>
 </div>
-<div dataSetID="container">
-	<div dataSetID="header">
-		<div dataSetID="headerLeft">
-			<h2 dataSetID="sampleTitle" contenteditable="true">
+<div id="container">
+	<div id="header">
+		<div id="headerLeft">
+			<h2 id="sampleTitle" contenteditable="true">
 				CKEditor<br> Goes Inline!
 			</h2>
 			<h3 contenteditable="true">
 				Lorem ipsum dolor sit amet dolor duis blandit vestibulum faucibus a, tortor.
 			</h3>
 		</div>
-		<div dataSetID="headerRight">
+		<div id="headerRight">
 			<div contenteditable="true">
 				<p>
 					Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.
@@ -223,8 +223,8 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			</div>
 		</div>
 	</div>
-	<div dataSetID="columns">
-		<div dataSetID="column1">
+	<div id="columns">
+		<div id="column1">
 			<div contenteditable="true">
 				<h3>
 					Fusce vitae porttitor
@@ -245,14 +245,14 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 				</blockquote>
 				<blockquote>
 					<p>
-						Libero nunc, rhoncus ante ipsum non ipsum. Nunc eleifend pede turpis dataSetID sollicitudin fringilla. Phasellus ultrices, velit ac arcu.
+						Libero nunc, rhoncus ante ipsum non ipsum. Nunc eleifend pede turpis id sollicitudin fringilla. Phasellus ultrices, velit ac arcu.
 					</p>
 				</blockquote>
 				<p>Pellentesque nunc. Donec suscipit erat. Pellentesque habitant morbi tristique ullamcorper.</p>
 				<p><s>Mauris mattis feugiat lectus nec mauris. Nullam vitae ante.</s></p>
 			</div>
 		</div>
-		<div dataSetID="column2">
+		<div id="column2">
 			<div contenteditable="true">
 				<h3>
 					Integer condimentum sit amet
@@ -260,8 +260,8 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 				<p>
 					<strong>Aenean nonummy a, mattis varius. Cras aliquet.</strong>
 					Praesent <a href="https://ckeditor.com/">magna non mattis ac, rhoncus nunc</a>, rhoncus eget, cursus pulvinar mollis.</p>
-				<p>Proin dataSetID nibh. Sed eu libero posuere sed, lectus. Phasellus dui gravida gravida feugiat mattis ac, felis.</p>
-				<p>Integer condimentum sit amet, tempor elit odio, a dolor non ante at sapien. Sed ac lectus. Nulla ligula quis eleifend mi, dataSetID leo velit pede cursus arcu dataSetID nulla ac lectus. Phasellus vestibulum. Nunc viverra enim quis diam.</p>
+				<p>Proin id nibh. Sed eu libero posuere sed, lectus. Phasellus dui gravida gravida feugiat mattis ac, felis.</p>
+				<p>Integer condimentum sit amet, tempor elit odio, a dolor non ante at sapien. Sed ac lectus. Nulla ligula quis eleifend mi, id leo velit pede cursus arcu id nulla ac lectus. Phasellus vestibulum. Nunc viverra enim quis diam.</p>
 			</div>
 			<div contenteditable="true">
 				<h3>
@@ -272,7 +272,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 				<p>In hac habitasse platea dictumst. Praesent wisi accumsan sit amet nibh. Maecenas orci luctus a, lacinia quam sem, posuere commodo, odio condimentum tempor, pede semper risus. Suspendisse pede. In hac habitasse platea dictumst. Nam sed laoreet sit amet erat. Integer.</p>
 			</div>
 		</div>
-		<div dataSetID="column3">
+		<div id="column3">
 			<div contenteditable="true">
 				<p>
 					<img src="assets/inlineall/logo.png" alt="CKEditor logo" style="float:left">
@@ -292,20 +292,20 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			</div>
 		</div>
 	</div>
-	<div dataSetID="tagLine">
+	<div id="tagLine">
 		Tags of this article:
-		<p dataSetID="taglist" contenteditable="true">
+		<p id="taglist" contenteditable="true">
 			inline, editing, floating, CKEditor
 		</p>
 	</div>
 </div>
-<div dataSetID="footer">
+<div id="footer">
 	<hr>
 	<p>
 		CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">
 			https://ckeditor.com</a>
 	</p>
-	<p dataSetID="copy">
+	<p id="copy">
 		Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a>
 		- Frederico Knabben. All rights reserved.
 	</p>

@@ -7,12 +7,12 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script dataSetType="text/javascript">
+	<script type="text/javascript">
 
-function gup( dataSetName )
+function gup( name )
 {
-	dataSetName = dataSetName.replace( /[\[]/, '\\\[' ).replace( /[\]]/, '\\\]' ) ;
-	var regexS = '[\\?&]' + dataSetName + '=([^&#]*)' ;
+	name = name.replace( /[\[]/, '\\\[' ).replace( /[\]]/, '\\\]' ) ;
+	var regexS = '[\\?&]' + name + '=([^&#]*)' ;
 	var regex = new RegExp( regexS ) ;
 	var results = regex.exec( window.location.href ) ;
 

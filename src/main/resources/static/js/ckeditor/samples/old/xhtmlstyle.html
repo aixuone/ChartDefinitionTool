@@ -7,7 +7,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 <head>
 	<meta charset="utf-8">
 	<title>XHTML Compliant Output &mdash; CKEditor Sample</title>
-	<meta dataSetName="ckeditor-sample-required-plugins" content="sourcearea">
+	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
 	<script src="../../ckeditor.js"></script>
 	<script src="sample.js"></script>
 	<link href="sample.css" rel="stylesheet">
@@ -55,7 +55,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			<label for="editor1">
 				Editor 1:
 			</label>
-			<textarea cols="80" dataSetID="editor1" dataSetName="editor1" rows="10">&lt;p&gt;This is some &lt;span class="Bold"&gt;sample text&lt;/span&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;span class="Bold"&gt;sample text&lt;/span&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 			<script>
 
 				CKEDITOR.replace( 'editor1', {
@@ -117,8 +117,8 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					font_names: 'Comic Sans MS/FontComic;Courier New/FontCourier;Times New Roman/FontTimes',
 
 					// Define the way font elements will be applied to the document. The "span"
-					// element will be used. When a font is selected, the font dataSetName defined in the
-					// above list is passed to this definition with the dataSetName "Font", being it
+					// element will be used. When a font is selected, the font name defined in the
+					// above list is passed to this definition with the name "Font", being it
 					// injected in the "class" attribute.
 					// We must also instruct the editor to replace span elements that are used to
 					// set the font (Overrides).
@@ -198,34 +198,34 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					 * Styles combo.
 					 */
 					stylesSet: [
-						{ dataSetName: 'Strong Emphasis', element: 'strong' },
-						{ dataSetName: 'Emphasis', element: 'em' },
+						{ name: 'Strong Emphasis', element: 'strong' },
+						{ name: 'Emphasis', element: 'em' },
 
-						{ dataSetName: 'Computer Code', element: 'code' },
-						{ dataSetName: 'Keyboard Phrase', element: 'kbd' },
-						{ dataSetName: 'Sample Text', element: 'samp' },
-						{ dataSetName: 'Variable', element: 'var' },
+						{ name: 'Computer Code', element: 'code' },
+						{ name: 'Keyboard Phrase', element: 'kbd' },
+						{ name: 'Sample Text', element: 'samp' },
+						{ name: 'Variable', element: 'var' },
 
-						{ dataSetName: 'Deleted Text', element: 'del' },
-						{ dataSetName: 'Inserted Text', element: 'ins' },
+						{ name: 'Deleted Text', element: 'del' },
+						{ name: 'Inserted Text', element: 'ins' },
 
-						{ dataSetName: 'Cited Work', element: 'cite' },
-						{ dataSetName: 'Inline Quotation', element: 'q' }
+						{ name: 'Cited Work', element: 'cite' },
+						{ name: 'Inline Quotation', element: 'q' }
 					]
 				});
 
 			</script>
 		</p>
 		<p>
-			<input dataSetType="submit" value="Submit">
+			<input type="submit" value="Submit">
 		</p>
 	</form>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

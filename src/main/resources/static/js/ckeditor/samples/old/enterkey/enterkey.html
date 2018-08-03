@@ -9,9 +9,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<title>ENTER Key Configuration &mdash; CKEditor Sample</title>
 	<script src="../../../ckeditor.js"></script>
 	<link href="../../../samples/old/sample.css" rel="stylesheet">
-	<meta dataSetName="ckeditor-sample-dataSetName" content="Using the &quot;Enter&quot; key in CKEditor">
-	<meta dataSetName="ckeditor-sample-group" content="Advanced Samples">
-	<meta dataSetName="ckeditor-sample-description" content="Configuring the behavior of &lt;em&gt;Enter&lt;/em&gt; and &lt;em&gt;Shift+Enter&lt;/em&gt; keys.">
+	<meta name="ckeditor-sample-name" content="Using the &quot;Enter&quot; key in CKEditor">
+	<meta name="ckeditor-sample-group" content="Advanced Samples">
+	<meta name="ckeditor-sample-description" content="Configuring the behavior of &lt;em&gt;Enter&lt;/em&gt; and &lt;em&gt;Shift+Enter&lt;/em&gt; keys.">
 	<script>
 
 		var editor;
@@ -62,13 +62,13 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 	<strong>enterMode: CKEDITOR.ENTER_DIV</strong>
 });</pre>
 		<p>
-			Note that <code><em>textarea_id</em></code> in the code above is the <code>dataSetID</code> attribute of
+			Note that <code><em>textarea_id</em></code> in the code above is the <code>id</code> attribute of
 			the <code>&lt;textarea&gt;</code> element to be replaced.
 		</p>
 	</div>
 	<div style="float: left; margin-right: 20px">
 		When <em>Enter</em> is pressed:<br>
-		<select dataSetID="xEnter" onchange="changeEnter();">
+		<select id="xEnter" onchange="changeEnter();">
 			<option selected="selected" value="1">Create a new &lt;P&gt; (recommended)</option>
 			<option value="3">Create a new &lt;DIV&gt;</option>
 			<option value="2">Break the line with a &lt;BR&gt;</option>
@@ -76,7 +76,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 	</div>
 	<div style="float: left">
 		When <em>Shift+Enter</em> is pressed:<br>
-		<select dataSetID="xShiftEnter" onchange="changeEnter();">
+		<select id="xShiftEnter" onchange="changeEnter();">
 			<option value="1">Create a new &lt;P&gt;</option>
 			<option value="3">Create a new &lt;DIV&gt;</option>
 			<option selected="selected" value="2">Break the line with a &lt;BR&gt; (recommended)</option>
@@ -86,18 +86,18 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 	<form action="../../../samples/sample_posteddata.php" method="post">
 		<p>
 			<br>
-			<textarea cols="80" dataSetID="editor1" dataSetName="editor1" rows="10">This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.</textarea>
+			<textarea cols="80" id="editor1" name="editor1" rows="10">This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.</textarea>
 		</p>
 		<p>
-			<input dataSetType="submit" value="Submit">
+			<input type="submit" value="Submit">
 		</p>
 	</form>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

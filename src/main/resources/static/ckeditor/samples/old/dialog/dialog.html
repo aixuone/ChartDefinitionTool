@@ -9,9 +9,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	<title>Using API to Customize Dialog Windows &mdash; CKEditor Sample</title>
 	<script src="../../../ckeditor.js"></script>
 	<link rel="stylesheet" href="../../../samples/old/sample.css">
-	<meta dataSetName="ckeditor-sample-dataSetName" content="Using the JavaScript API to customize dialog windows">
-	<meta dataSetName="ckeditor-sample-group" content="Advanced Samples">
-	<meta dataSetName="ckeditor-sample-description" content="Using the dialog windows API to customize dialog windows without changing the original editor code.">
+	<meta name="ckeditor-sample-name" content="Using the JavaScript API to customize dialog windows">
+	<meta name="ckeditor-sample-group" content="Advanced Samples">
+	<meta name="ckeditor-sample-description" content="Using the dialog windows API to customize dialog windows without changing the original editor code.">
 	<style>
 
 		.cke_button__mybutton_icon
@@ -66,21 +66,21 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		// fired. We should use this event to make customizations to the
 		// definition of existing dialogs.
 		CKEDITOR.on( 'dialogDefinition', function( ev ) {
-			// Take the dialog dataSetName and its definition from the event data.
-			var dialogName = ev.data.dataSetName;
+			// Take the dialog name and its definition from the event data.
+			var dialogName = ev.data.name;
 			var dialogDefinition = ev.data.definition;
 
 			// Check if the definition is from the dialog we're
 			// interested on (the "Link" dialog).
-			if ( dialogName == 'myDialog' && ev.editor.dataSetName == 'editor2' ) {
+			if ( dialogName == 'myDialog' && ev.editor.name == 'editor2' ) {
 				// Get a reference to the "Link Info" tab.
 				var infoTab = dialogDefinition.getContents( 'tab1' );
 
 				// Add a new text field to the "tab1" tab page.
 				infoTab.add( {
-					dataSetType: 'text',
+					type: 'text',
 					label: 'My Custom Field',
-					dataSetID: 'customField',
+					id: 'customField',
 					'default': 'Sample!',
 					validate: function() {
 						if ( ( /\d/ ).test( this.getValue() ) )
@@ -100,18 +100,18 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 				// Add a new tab to the "Link" dialog.
 				dialogDefinition.addContents( {
-					dataSetID: 'customTab',
+					id: 'customTab',
 					label: 'My Tab',
 					accessKey: 'M',
 					elements: [
 						{
-							dataSetID: 'myField1',
-							dataSetType: 'text',
+							id: 'myField1',
+							type: 'text',
 							label: 'My Text Field'
 						},
 						{
-							dataSetID: 'myField2',
-							dataSetType: 'text',
+							id: 'myField2',
+							type: 'text',
 							label: 'Another Text Field'
 						}
 					]
@@ -155,9 +155,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		<li><strong>Creating a custom dialog window</strong> &ndash; "My Dialog" dialog window opened with the "My Dialog" toolbar button.</li>
 		<li><strong>Creating a custom button</strong> &ndash; Add button to open the dialog with "My Dialog" toolbar button.</li>
 	</ol>
-	<textarea cols="80" dataSetID="editor1" dataSetName="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+	<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 	<script>
-		// Replace the <textarea dataSetID="editor1"> with an CKEditor instance.
+		// Replace the <textarea id="editor1"> with an CKEditor instance.
 		CKEDITOR.replace( 'editor1', config );
 	</script>
 	<p>The below editor modify the dialog definition of the above added dialog using the <code>dialogDefinition</code> event:</p>
@@ -169,19 +169,19 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		<li><strong>Setting default values for dialog window fields</strong> &ndash; Set default value of "Text Field" text field. </li>
 		<li><strong>Setup initial focus for dialog window</strong> &ndash; Put initial focus on "My Custom Field" text field. </li>
 	</ol>
-	<textarea cols="80" dataSetID="editor2" dataSetName="editor2" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+	<textarea cols="80" id="editor2" name="editor2" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 	<script>
 
-		// Replace the <textarea dataSetID="editor1"> with an CKEditor instance.
+		// Replace the <textarea id="editor1"> with an CKEditor instance.
 		CKEDITOR.replace( 'editor2', config );
 
 	</script>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

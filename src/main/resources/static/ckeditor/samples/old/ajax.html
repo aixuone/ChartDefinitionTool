@@ -17,7 +17,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			if ( editor )
 				return;
 
-			// Create a new editor inside the <div dataSetID="editor">, setting its value to html
+			// Create a new editor inside the <div id="editor">, setting its value to html
 			var config = {};
 			editor = CKEDITOR.appendTo( 'editor', config, html );
 		}
@@ -57,26 +57,26 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	</div>
 	<p>Click the buttons to create and remove a CKEditor instance.</p>
 	<p>
-		<input onclick="createEditor();" dataSetType="button" value="Create Editor">
-		<input onclick="removeEditor();" dataSetType="button" value="Remove Editor">
+		<input onclick="createEditor();" type="button" value="Create Editor">
+		<input onclick="removeEditor();" type="button" value="Remove Editor">
 	</p>
 	<!-- This div will hold the editor. -->
-	<div dataSetID="editor">
+	<div id="editor">
 	</div>
-	<div dataSetID="contents" style="display: none">
+	<div id="contents" style="display: none">
 		<p>
 			Edited Contents:
 		</p>
 		<!-- This div will be used to display the editor contents. -->
-		<div dataSetID="editorcontents">
+		<div id="editorcontents">
 		</div>
 	</div>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

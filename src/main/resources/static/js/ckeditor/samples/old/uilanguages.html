@@ -45,22 +45,22 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 	<strong>language: 'de'</strong>
 });</pre>
 		<p>
-			Note that <code><em>textarea_id</em></code> in the code above is the <code>dataSetID</code> attribute of
+			Note that <code><em>textarea_id</em></code> in the code above is the <code>id</code> attribute of
 			the <code>&lt;textarea&gt;</code> element to be replaced.
 		</p>
 	</div>
 	<form action="sample_posteddata.php" method="post">
 		<p>
-			Available languages (<span dataSetID="count"> </span> languages!):<br>
+			Available languages (<span id="count"> </span> languages!):<br>
 			<script>
 
-				document.write( '<select disabled="disabled" dataSetID="languages" onchange="createEditor( this.value );">' );
+				document.write( '<select disabled="disabled" id="languages" onchange="createEditor( this.value );">' );
 
 				// Get the language list from the _languages.js file.
 				for ( var i = 0 ; i < window.CKEDITOR_LANGS.length ; i++ ) {
 					document.write(
 						'<option value="' + window.CKEDITOR_LANGS[i].code + '">' +
-							window.CKEDITOR_LANGS[i].dataSetName +
+							window.CKEDITOR_LANGS[i].name +
 						'</option>' );
 				}
 
@@ -73,7 +73,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			</span>
 		</p>
 		<p>
-			<textarea cols="80" dataSetID="editor1" dataSetName="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 			<script>
 
 				// Set the number of languages.
@@ -85,7 +85,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					if ( editor )
 						editor.destroy();
 
-					// Replace the <textarea dataSetID="editor"> with an CKEditor
+					// Replace the <textarea id="editor"> with an CKEditor
 					// instance, using default configurations.
 					editor = CKEDITOR.replace( 'editor1', {
 						language: languageCode,
@@ -108,12 +108,12 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			</script>
 		</p>
 	</form>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>

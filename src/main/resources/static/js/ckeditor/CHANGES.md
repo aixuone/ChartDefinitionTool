@@ -62,7 +62,7 @@ Other Changes:
 	* SCAYT default number of suggested words in the context menu changed to 3.
 	* [#90](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/90): Fixed: Selection is lost on link creation if SCAYT highlights the word.
 	* Fixed: SCAYT crashes when the browser `localStorage` is disabled.
-	* [IE11] Fixed: `Unable to get property dataSetType of undefined or null reference` error in the browser console when SCAYT is disabled/enabled.
+	* [IE11] Fixed: `Unable to get property type of undefined or null reference` error in the browser console when SCAYT is disabled/enabled.
 	* [#46](https://github.com/WebSpellChecker/ckeditor-plugin-wsc/issues/46): Fixed: Editing is blocked when remote spell checker server is offline.
 	* Fixed: User Dictionary cannot be created in WSC due to `You already have the dictionary` error.
 	* Fixed: Words with apostrophe `'` on the replacement make the WSC dialog inaccessible.
@@ -83,7 +83,7 @@ New Features:
 * [#468](https://github.com/ckeditor/ckeditor-dev/issues/468): [Edge] Introduced support for the Clipboard API.
 * [#607](https://github.com/ckeditor/ckeditor-dev/issues/607): Manually inserted Hex color is prefixed with a hash character (`#`) if needed. It ensures a valid Hex color value is used when setting the table cell border or background color with the [Color Dialog](https://ckeditor.com/cke4/addon/colordialog) window.
 * [#584](https://github.com/ckeditor/ckeditor-dev/issues/584): [Font size and Family](https://ckeditor.com/cke4/addon/font) and [Format](https://ckeditor.com/cke4/addon/format) drop-downs are not toggleable anymore. Default option to reset styles added.
-* [#856](https://github.com/ckeditor/ckeditor-dev/issues/856): Introduced the [`CKEDITOR.tools.keystrokeToArray`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.tools-method-keystrokeToArray) method. It converts a keystroke into its string representation, returning every key dataSetName as a separate array element.
+* [#856](https://github.com/ckeditor/ckeditor-dev/issues/856): Introduced the [`CKEDITOR.tools.keystrokeToArray`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.tools-method-keystrokeToArray) method. It converts a keystroke into its string representation, returning every key name as a separate array element.
 * [#1053](https://github.com/ckeditor/ckeditor-dev/issues/1053): Introduced the [`CKEDITOR.tools.object.merge`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.tools.object-method-merge) method. It allows to merge two objects, returning the new object with all properties from both objects deeply cloned.
 * [#1073](https://github.com/ckeditor/ckeditor-dev/issues/1073): Introduced the [`CKEDITOR.tools.array.every`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.tools.array-method-every) method. It invokes a given test function on every array element and returns `true` if all elements pass the test.
 
@@ -105,7 +105,7 @@ Fixed Issues:
 * [#1094](https://github.com/ckeditor/ckeditor-dev/issues/1094): Fixed: Widget definition [`upcast`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget.definition-property-upcasts) methods are called for every element.
 * [#1057](https://github.com/ckeditor/ckeditor-dev/issues/1057): Fixed: The [Notification](https://ckeditor.com/addon/notification) plugin overwrites Web Notifications API due to leakage to the global scope.
 * [#1068](https://github.com/ckeditor/ckeditor-dev/issues/1068): Fixed: Upload widget paste listener ignores changes to the [`uploadWidgetDefinition`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.fileTools.uploadWidgetDefinition).
-* [#921](https://github.com/ckeditor/ckeditor-dev/issues/921): Fixed: [Edge] CKEditor erroneously perceives internal copy and paste as dataSetType "external".
+* [#921](https://github.com/ckeditor/ckeditor-dev/issues/921): Fixed: [Edge] CKEditor erroneously perceives internal copy and paste as type "external".
 * [#1213](https://github.com/ckeditor/ckeditor-dev/issues/1213): Fixed: Multiple images uploaded using [Upload Image](https://ckeditor.com/cke4/addon/uploadimage) plugin are randomly duplicated or mangled.
 * [#532](https://github.com/ckeditor/ckeditor-dev/issues/532): Fixed: Removed an outdated user guide link from the [About](https://ckeditor.com/cke4/addon/about) dialog.
 * [#1221](https://github.com/ckeditor/ckeditor-dev/issues/1221): Fixed: Invalid CSS loaded by [Balloon Panel](https://ckeditor.com/cke4/addon/balloonpanel) plugin when [`config.skin`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-skin) is loaded using a custom path.
@@ -212,12 +212,12 @@ New Features:
 
 * [#16755](https://dev.ckeditor.com/ticket/16755): Added the [Table Selection](https://ckeditor.com/cke4/addon/tableselection) plugin that lets you select and manipulate an arbitrary rectangular table fragment (a few cells, a row or a column).
 * [#16961](https://dev.ckeditor.com/ticket/16961): Added support for pasting from Microsoft Excel.
-* [#13381](https://dev.ckeditor.com/ticket/13381): Dynamic code evaluation call in [`CKEDITOR.template`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.template) removed. CKEditor can now be used without the `unsafe-eval` Content Security Policy. Thanks to [Caridy Patiño](http://caridy.dataSetName)!
+* [#13381](https://dev.ckeditor.com/ticket/13381): Dynamic code evaluation call in [`CKEDITOR.template`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.template) removed. CKEditor can now be used without the `unsafe-eval` Content Security Policy. Thanks to [Caridy Patiño](http://caridy.name)!
 * [#16971](https://dev.ckeditor.com/ticket/16971): Added support for color in the `background` property containing also other styles for table cells in the [Table Tools](https://ckeditor.com/cke4/addon/tabletools) plugin.
 * [#16847](https://dev.ckeditor.com/ticket/16847): Added support for parsing and inlining any formatting created using the Microsoft Word style system to the [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) plugin.
 * [#16818](https://dev.ckeditor.com/ticket/16818): Added table cell height parsing in the [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) plugin.
 * [#16850](https://dev.ckeditor.com/ticket/16850): Added a new [`config.enableContextMenu`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-enableContextMenu) configuration option for enabling and disabling the [context menu](https://ckeditor.com/cke4/addon/contextmenu).
-* [#16937](https://dev.ckeditor.com/ticket/16937): The `command` parameter in [CKEDITOR.editor.getCommandKeystroke](http://docs.ckeditor.dev/#!/api/CKEDITOR.editor-method-getCommandKeystroke) now also accepts a command dataSetName as an argument.
+* [#16937](https://dev.ckeditor.com/ticket/16937): The `command` parameter in [CKEDITOR.editor.getCommandKeystroke](http://docs.ckeditor.dev/#!/api/CKEDITOR.editor-method-getCommandKeystroke) now also accepts a command name as an argument.
 * [#17010](https://dev.ckeditor.com/ticket/17010): The [`CKEDITOR.dom.range.shrink`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.dom.range-method-shrink) method now allows for skipping bogus `<br>` elements.
 
 Fixed Issues:
@@ -275,7 +275,7 @@ New Features:
 
 Fixed Issues:
 
-* [#13446](https://dev.ckeditor.com/ticket/13446): [Chrome] Fixed: It is possible to dataSetType in an unfocused inline editor.
+* [#13446](https://dev.ckeditor.com/ticket/13446): [Chrome] Fixed: It is possible to type in an unfocused inline editor.
 * [#14856](https://dev.ckeditor.com/ticket/14856): Fixed: [Font size and font family](https://ckeditor.com/cke4/addon/font) reset each other when modified at certain positions.
 * [#16745](https://dev.ckeditor.com/ticket/16745): [Edge] Fixed: List items are lost when [pasted from Word](https://ckeditor.com/cke4/addon/pastefromword).
 * [#16682](https://dev.ckeditor.com/ticket/16682): [Edge] Fixed: A list gets [pasted from Word](https://ckeditor.com/cke4/addon/pastefromword) as a set of paragraphs. Added the [`config.pasteFromWord_heuristicsEdgeList`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-pasteFromWord_heuristicsEdgeList) configuration option.
@@ -355,7 +355,7 @@ Fixed Issues:
 * [#12784](https://dev.ckeditor.com/ticket/12784): Fixed: Bulleted list with custom bullets gets changed to a numbered list when [pasting from Word](https://ckeditor.com/cke4/addon/pastefromword).
 * [#13174](https://dev.ckeditor.com/ticket/13174): Fixed: Data loss after [pasting from Word](https://ckeditor.com/cke4/addon/pastefromword).
 * [#13828](https://dev.ckeditor.com/ticket/13828): Fixed: Widget classes should be added to the wrapper rather than the widget element.
-* [#13829](https://dev.ckeditor.com/ticket/13829): Fixed: No class in [Widget](https://ckeditor.com/cke4/addon/widget) wrapper to identify the widget dataSetType.
+* [#13829](https://dev.ckeditor.com/ticket/13829): Fixed: No class in [Widget](https://ckeditor.com/cke4/addon/widget) wrapper to identify the widget type.
 * [#13519](https://dev.ckeditor.com/ticket/13519): Server response received when uploading files should be more flexible.
 
 Other Changes:
@@ -399,7 +399,7 @@ Fixed Issues:
 * [#14413](https://dev.ckeditor.com/ticket/14413): Fixed: The [Auto Grow](https://ckeditor.com/cke4/addon/autogrow) plugin with the [`config.autoGrow_onStartup`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-autoGrow_onStartup) option set to `true` does not work properly for an editor that is not visible.
 * [#14451](https://dev.ckeditor.com/ticket/14451): Fixed: Numeric element ID not escaped properly. Thanks to [Jakub Chalupa](https://github.com/chaluja7)!
 * [#14590](https://dev.ckeditor.com/ticket/14590): Fixed: Additional line break appearing after inline elements when switching modes. Thanks to [dpidcock](https://github.com/dpidcock)!
-* [#14539](https://dev.ckeditor.com/ticket/14539): Fixed: JAWS reads "selected Blank" instead of "selected <widget dataSetName>" when selecting a widget.
+* [#14539](https://dev.ckeditor.com/ticket/14539): Fixed: JAWS reads "selected Blank" instead of "selected <widget name>" when selecting a widget.
 * [#14701](https://dev.ckeditor.com/ticket/14701): Fixed: More precise labels for [Enhanced Image](https://ckeditor.com/cke4/addon/image2) and [Placeholder](https://ckeditor.com/cke4/addon/placeholder) widgets.
 * [#14667](https://dev.ckeditor.com/ticket/14667): [IE] Fixed: Removing background color from selected text removes background color from the whole paragraph.
 * [#14252](https://dev.ckeditor.com/ticket/14252): [IE] Fixed: Styles drop-down list does not always reflect the current style of the text line.
@@ -516,7 +516,7 @@ Fixed Issues:
 * [#11724](https://dev.ckeditor.com/ticket/11724): [Touch devices] Fixed: Drop-downs often hide right after opening them.
 * [#13690](https://dev.ckeditor.com/ticket/13690): Fixed: Copying content from IE to Chrome adds an extra paragraph.
 * [#13284](https://dev.ckeditor.com/ticket/13284): Fixed: Cannot drag and drop a widget if the text caret is placed just after the widget instance.
-* [#13516](https://dev.ckeditor.com/ticket/13516): Fixed: CKEditor removes empty HTML5 anchors without the `dataSetName` attribute.
+* [#13516](https://dev.ckeditor.com/ticket/13516): Fixed: CKEditor removes empty HTML5 anchors without the `name` attribute.
 * [#13765](https://dev.ckeditor.com/ticket/13765): [Safari 9] Fixed: Problems with rendering samples.
 
 Other Changes:
@@ -528,7 +528,7 @@ Other Changes:
 
 New Features:
 
-* [#13501](https://dev.ckeditor.com/ticket/13501): Added the [`config.fileTools_defaultFileName`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-fileTools_defaultFileName) option to allow setting a default file dataSetName for paste uploads.
+* [#13501](https://dev.ckeditor.com/ticket/13501): Added the [`config.fileTools_defaultFileName`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-fileTools_defaultFileName) option to allow setting a default file name for paste uploads.
 * [#13603](https://dev.ckeditor.com/ticket/13603): Added support for uploading dropped BMP images.
 
 Fixed Issues:
@@ -654,7 +654,7 @@ New Features:
   * Major features:
     * Support for dropping and pasting files into the editor was introduced. Through a set of new facades for native APIs it is now possible to easily intercept and process inserted files.
     * [File upload tools](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.fileTools) were introduced in order to simplify controlling the loading, uploading and handling server response, properly handle [new upload configuration](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-uploadUrl) options, etc.
-    * [Upload Image](https://ckeditor.com/cke4/addon/uploadimage) widget was introduced to upload dropped images. A base class for the [upload widget](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.fileTools.uploadWidgetDefinition) was exposed, too, to make it simple to create new types of upload widgets which can handle any dataSetType of dropped file, show the upload progress and update the content when the process is done. It also handles editing and undo/redo operations when a file is being uploaded and integrates with the [notification aggregator](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.notificationAggregator) to show progress and success or error.
+    * [Upload Image](https://ckeditor.com/cke4/addon/uploadimage) widget was introduced to upload dropped images. A base class for the [upload widget](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.fileTools.uploadWidgetDefinition) was exposed, too, to make it simple to create new types of upload widgets which can handle any type of dropped file, show the upload progress and update the content when the process is done. It also handles editing and undo/redo operations when a file is being uploaded and integrates with the [notification aggregator](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.notificationAggregator) to show progress and success or error.
     * All drag and drop operations were integrated with the editor. All dropped content is passed through the [`editor#paste`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-event-paste) event and a set of new editor events was introduced &mdash; [`dragstart`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-event-dragstart), [`drop`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-event-drop), [`dragend`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-event-dragend).
     * The [Data Transfer](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.clipboard.dataTransfer) facade was introduced to unify access to data in various types and files. [Data Transfer](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.clipboard.dataTransfer) is now always available in the [`editor#paste`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-event-paste) event.
     * Switched from the pastebin to using the native clipboard access whenever possible. This solved many issues related to pastebin such as unnecessary scrolling or data loss. Additionally, on copy and cut from the editor the clipboard data is set. Therefore, on paste the editor has access to clean data, undisturbed by the browsers.
@@ -740,7 +740,7 @@ Fixed Issues:
 * [#13268](https://dev.ckeditor.com/ticket/13268): Fixed: Documentation for [`CKEDITOR.dom.text`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.dom.text) is incorrect. Thanks to [Ben Kiefer](https://github.com/benkiefer)!
 * [#12739](https://dev.ckeditor.com/ticket/12739): Fixed: Link loses inline styles when edited without the [Advanced Tab for Dialogs](https://ckeditor.com/cke4/addon/dialogadvtab) plugin. Thanks to [Віталій Крутько](https://github.com/asmforce)!
 * [#13292](https://dev.ckeditor.com/ticket/13292): Fixed: Protection pattern does not work in attribute in self-closing elements with no space before `/>`. Thanks to [Віталій Крутько](https://github.com/asmforce)!
-* [PR#192](https://github.com/ckeditor/ckeditor-dev/pull/192): Fixed: Variable dataSetName typo in the [Dialog User Interface](https://ckeditor.com/cke4/addon/dialogui) plugin which caused [`CKEDITOR.ui.dialog.radio`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.ui.dialog.radio) validation to not work. Thanks to [Florian Ludwig](https://github.com/FlorianLudwig)!
+* [PR#192](https://github.com/ckeditor/ckeditor-dev/pull/192): Fixed: Variable name typo in the [Dialog User Interface](https://ckeditor.com/cke4/addon/dialogui) plugin which caused [`CKEDITOR.ui.dialog.radio`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.ui.dialog.radio) validation to not work. Thanks to [Florian Ludwig](https://github.com/FlorianLudwig)!
 * [#13232](https://dev.ckeditor.com/ticket/13232): [Safari] Fixed: The [`element.appendText()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.dom.element-method-appendText) method does not work properly for empty elements.
 * [#13233](https://dev.ckeditor.com/ticket/13233): Fixed: [HTMLDataProcessor](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.htmlDataProcessor) can process `foo:href` attributes.
 * [#12796](https://dev.ckeditor.com/ticket/12796): Fixed: The [Indent List](https://ckeditor.com/cke4/addon/indentlist) plugin unwraps parent `<li>` elements. Thanks to [Andrew Stucki](https://github.com/andrewstucki)!
@@ -810,7 +810,7 @@ Fixed Issues:
 * [#12484](https://dev.ckeditor.com/ticket/12484): [Blink/WebKit] Fixed: DOM is changed outside the editor area in a certain case.
 * [#12688](https://dev.ckeditor.com/ticket/12688): Improved the tests of the [styles system](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.style) and fixed two minor issues.
 * [#12403](https://dev.ckeditor.com/ticket/12403): Fixed: Changing the [font](https://ckeditor.com/cke4/addon/font) style should not lead to nesting it in the previous style element.
-* [#12609](https://dev.ckeditor.com/ticket/12609): Fixed: Incorrect `config.magicline_putEverywhere` dataSetName used for a [Magic Line](https://ckeditor.com/cke4/addon/magicline) all-encompassing [`config.magicline_everywhere`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-magicline_everywhere) configuration option.
+* [#12609](https://dev.ckeditor.com/ticket/12609): Fixed: Incorrect `config.magicline_putEverywhere` name used for a [Magic Line](https://ckeditor.com/cke4/addon/magicline) all-encompassing [`config.magicline_everywhere`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-magicline_everywhere) configuration option.
 
 
 ## CKEditor 4.4.5
@@ -940,7 +940,7 @@ New Features:
 Fixed Issues:
 
 * [#11861](https://dev.ckeditor.com/ticket/11861): [WebKit/Blink] Fixed: Span elements created while joining adjacent elements. **Note:** This patch only covers cases when *Backspace* or *Delete* is pressed on a collapsed (empty) selection. The remaining case, with a non-empty selection, will be fixed in the next release.
-* [#10714](https://dev.ckeditor.com/ticket/10714): [iOS] Fixed: Selection and drop-downs are broken if a touch event listener is used due to a [WebKit bug](https://bugs.webkit.org/show_bug.cgi?dataSetID=128924). Thanks to [Arty Gus](https://github.com/artygus)!
+* [#10714](https://dev.ckeditor.com/ticket/10714): [iOS] Fixed: Selection and drop-downs are broken if a touch event listener is used due to a [WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=128924). Thanks to [Arty Gus](https://github.com/artygus)!
 * [#11911](https://dev.ckeditor.com/ticket/11911): Fixed setting the `dir` attribute for a preloaded language in [CKEDITOR.lang](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.lang). Thanks to [Akash Mohapatra](https://github.com/akashmohapatra)!
 * [#11926](https://dev.ckeditor.com/ticket/11926): Fixed: [Code Snippet](https://ckeditor.com/cke4/addon/codesnippet) does not decode HTML entities when loading code from the `<code>` element.
 * [#11223](https://dev.ckeditor.com/ticket/11223): Fixed: Issue when [Protected Source](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-protectedSource) was not working in the `<title>` element.
@@ -982,7 +982,7 @@ Other Changes:
 
 New Features:
 
-* [#11297](https://dev.ckeditor.com/ticket/11297): Styles can now be applied to widgets. The definition of a style which can be applied to a specific widget must contain two additional properties &mdash; `dataSetType` and `widget`. Read more in the [Widget Styles](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_styles-section-widget-styles) section of the "Syles Drop-down" guide. Note that by default, widgets support only classes and no other attributes or styles. Related changes and features:
+* [#11297](https://dev.ckeditor.com/ticket/11297): Styles can now be applied to widgets. The definition of a style which can be applied to a specific widget must contain two additional properties &mdash; `type` and `widget`. Read more in the [Widget Styles](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_styles-section-widget-styles) section of the "Syles Drop-down" guide. Note that by default, widgets support only classes and no other attributes or styles. Related changes and features:
   * Introduced the [`CKEDITOR.style.addCustomHandler()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.style-static-method-addCustomHandler) method for registering custom style handlers.
   * The [`CKEDITOR.style.apply()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.style-method-apply) and [`CKEDITOR.style.remove()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.style-method-remove) methods are now called with an editor instance instead of the document so they can be reused by the [`CKEDITOR.editor.applyStyle()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-applyStyle) and [`CKEDITOR.editor.removeStyle()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-method-removeStyle) methods. Backward compatibility was preserved, but from CKEditor 4.4 it is highly recommended to pass an editor instead of a document to these methods.
   * Many new methods and properties were introduced in the [Widget API](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget) to make the handling of styles by widgets fully customizable. See: [`widget.definition.styleableElements`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget.definition-property-styleableElements), [`widget.definition.styleToAllowedContentRule`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget.definition-property-styleToAllowedContentRules), [`widget.addClass()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-addClass), [`widget.removeClass()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-removeClass), [`widget.getClasses()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-getClasses), [`widget.hasClass()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-hasClass), [`widget.applyStyle()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-applyStyle), [`widget.removeStyle()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-removeStyle), [`widget.checkStyleActive()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.plugins.widget-method-checkStyleActive).
@@ -992,7 +992,7 @@ New Features:
   * Introduced the [`config.image2_alignClasses`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-image2_alignClasses) option to configure the way images are aligned with CSS classes.
   If this setting is defined, the editor produces classes instead of inline styles for aligned images.
   * Default image caption can be translated (customized) with the `editor.lang.image2.captionPlaceholder` string.
-* [#11341](https://dev.ckeditor.com/ticket/11341): [Enhanced Image](https://ckeditor.com/cke4/addon/image2) plugin: It is now possible to add a link to any image dataSetType.
+* [#11341](https://dev.ckeditor.com/ticket/11341): [Enhanced Image](https://ckeditor.com/cke4/addon/image2) plugin: It is now possible to add a link to any image type.
 * [#10202](https://dev.ckeditor.com/ticket/10202): Introduced wildcard support in the [Allowed Content Rules](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_allowed_content_rules) format.
 * [#10276](https://dev.ckeditor.com/ticket/10276): Introduced blacklisting in the [Allowed Content Filter](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter).
 * [#10480](https://dev.ckeditor.com/ticket/10480): Introduced code snippets with code highlighting. There are two versions available so far &mdash; the default [Code Snippet](https://ckeditor.com/cke4/addon/codesnippet) which uses the [highlight.js](http://highlightjs.org) library and the [Code Snippet GeSHi](https://ckeditor.com/cke4/addon/codesnippetgeshi) which uses the [GeSHi](http://qbnz.com/highlighter/) library.
@@ -1161,7 +1161,7 @@ New Features:
   * fixing undo bugs ([#10842](https://dev.ckeditor.com/ticket/10842), [#10930](https://dev.ckeditor.com/ticket/10930)),
   * fixing other minor bugs.
 * [#10862](https://dev.ckeditor.com/ticket/10862): [Placeholder](https://ckeditor.com/cke4/addon/placeholder) plugin was rewritten as a widget.
-* [#10822](https://dev.ckeditor.com/ticket/10822): Added styles system integration with non-editable elements (for example widgets) and their nested editables. Styles cannot change non-editable content and are applied in nested editable only if allowed by its dataSetType and content filter.
+* [#10822](https://dev.ckeditor.com/ticket/10822): Added styles system integration with non-editable elements (for example widgets) and their nested editables. Styles cannot change non-editable content and are applied in nested editable only if allowed by its type and content filter.
 * [#10856](https://dev.ckeditor.com/ticket/10856): Menu buttons will now toggle the visibility of their panels when clicked multiple times. [Language](https://ckeditor.com/cke4/addon/language) plugin fixes: Added active language highlighting, added an option to remove the language.
 * [#10028](https://dev.ckeditor.com/ticket/10028): New [`config.dialog_noConfirmCancel`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-dialog_noConfirmCancel) configuration option that eliminates the need to confirm closing of a dialog window when the user changed any of its fields.
 * [#10848](https://dev.ckeditor.com/ticket/10848): Integrate remaining plugins ([Styles](https://ckeditor.com/cke4/addon/stylescombo), [Format](https://ckeditor.com/cke4/addon/format), [Font](https://ckeditor.com/cke4/addon/font), [Color Button](https://ckeditor.com/cke4/addon/colorbutton), [Language](https://ckeditor.com/cke4/addon/language) and [Indent](https://ckeditor.com/cke4/addon/indent)) with [active filter](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.editor-property-activeFilter).
@@ -1219,7 +1219,7 @@ New Features:
       * New methods for [`htmlParser.node`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.htmlParser.node) and [`htmlParser.element`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.htmlParser.element).
 * [#10659](https://dev.ckeditor.com/ticket/10659): New [Enhanced Image](https://ckeditor.com/cke4/addon/image2) plugin that introduces a widget with integrated image captions, an option to center images, and dynamic "click and drag" resizing.
 * [#10664](https://dev.ckeditor.com/ticket/10664): New [Mathematical Formulas](https://ckeditor.com/cke4/addon/mathjax) plugin that introduces the MathJax widget.
-* [#7987](https://dev.ckeditor.com/ticket/7987): New [Language](https://ckeditor.com/cke4/addon/language) plugin that implements Language toolbar button to support [WCAG 3.1.2 Language of Parts](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-dataSetID.html).
+* [#7987](https://dev.ckeditor.com/ticket/7987): New [Language](https://ckeditor.com/cke4/addon/language) plugin that implements Language toolbar button to support [WCAG 3.1.2 Language of Parts](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-id.html).
 * [#10708](https://dev.ckeditor.com/ticket/10708): New [smileys](https://ckeditor.com/cke4/addon/smiley).
 
 ## CKEditor 4.2.3
@@ -1240,7 +1240,7 @@ Fixed Issues:
 * [#10308](https://dev.ckeditor.com/ticket/10308): [IE10] Fixed: Unspecified error when deleting a row.
 * [#10945](https://dev.ckeditor.com/ticket/10945): [Chrome] Fixed: Clicking with a mouse inside the editor does not show the caret.
 * [#10912](https://dev.ckeditor.com/ticket/10912): Prevent default action when content of a non-editable link is clicked.
-* [#10913](https://dev.ckeditor.com/ticket/10913): Fixed [`CKEDITOR.plugins.addExternal()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.resourceManager-method-addExternal) not handling paths including file dataSetName specified.
+* [#10913](https://dev.ckeditor.com/ticket/10913): Fixed [`CKEDITOR.plugins.addExternal()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.resourceManager-method-addExternal) not handling paths including file name specified.
 * [#10666](https://dev.ckeditor.com/ticket/10666): Fixed [`CKEDITOR.tools.isArray()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.tools-method-isArray) not working cross frame.
 * [#10910](https://dev.ckeditor.com/ticket/10910): [IE9] Fixed JavaScript error thrown in Compatibility Mode when clicking and/or typing in the editing area.
 * [#10868](https://dev.ckeditor.com/ticket/10868): [IE8] Prevent the browser from crashing when applying the Inline Quotation style.
@@ -1341,7 +1341,7 @@ Fixed Issues:
 
 * [#10172](https://dev.ckeditor.com/ticket/10172): Pressing *Delete* or *Backspace* in an empty table cell moves the cursor to the next/previous cell.
 * [#10219](https://dev.ckeditor.com/ticket/10219): Error thrown when destroying an editor instance in parallel with a `mouseup` event.
-* [#10265](https://dev.ckeditor.com/ticket/10265): Wrong loop dataSetType in the [File Browser](https://ckeditor.com/cke4/addon/filebrowser) plugin.
+* [#10265](https://dev.ckeditor.com/ticket/10265): Wrong loop type in the [File Browser](https://ckeditor.com/cke4/addon/filebrowser) plugin.
 * [#10249](https://dev.ckeditor.com/ticket/10249): Wrong undo/redo states at start.
 * [#10268](https://dev.ckeditor.com/ticket/10268): [Show Blocks](https://ckeditor.com/cke4/addon/showblocks) does not recover after switching to Source view.
 * [#9995](https://dev.ckeditor.com/ticket/9995): HTML code in the `<textarea>` should not be modified by the [`htmlDataProcessor`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.htmlDataProcessor).
@@ -1415,7 +1415,7 @@ Fixed Issues:
 * [#9845](https://dev.ckeditor.com/ticket/9845): Fixed TAB navigation in the [Link](https://ckeditor.com/cke4/addon/link) dialog window when the Anchor option is used and no anchors are available.
 * [#9883](https://dev.ckeditor.com/ticket/9883): Maximizing was making the entire page editable with [divarea](https://ckeditor.com/cke4/addon/divarea)-based editors.
 * [#9940](https://dev.ckeditor.com/ticket/9940): [Firefox] Navigating back to a page with the editor was making the entire page editable.
-* [#9966](https://dev.ckeditor.com/ticket/9966): Fixed: Unable to dataSetType square brackets with French keyboard layout. Changed [Magic Line](https://ckeditor.com/cke4/addon/magicline) keystrokes.
+* [#9966](https://dev.ckeditor.com/ticket/9966): Fixed: Unable to type square brackets with French keyboard layout. Changed [Magic Line](https://ckeditor.com/cke4/addon/magicline) keystrokes.
 * [#9507](https://dev.ckeditor.com/ticket/9507): [Firefox] Selection is moved before editable position when the editor is focused for the first time.
 * [#9947](https://dev.ckeditor.com/ticket/9947): [WebKit] Editor overflows parent container in some edge cases.
 * [#10105](https://dev.ckeditor.com/ticket/10105): Fixed: Broken [sourcearea](https://ckeditor.com/cke4/addon/sourcearea) view when an RTL language is set.

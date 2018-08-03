@@ -8,12 +8,12 @@
 	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="bootstrap-select/bootstrap-select.min.css">
 	<link rel="stylesheet" href="css/ixu.css">	
-	<script dataSetType="text/javascript" src="js/jquery-2.0.0.min.js"></script>
-	<script dataSetType="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 </head>
 <body>
-	<div dataSetID="echart" style="background: #ff0">
+	<div id="echart" style="background: #ff0">
 		
 
 	</div>
@@ -32,7 +32,7 @@
 		$("#echart").width(w+'px').height(h+'px');
 			
 		var database = JSON.parse(sessionStorage.database);
-		var io ,dataSetType, style,bundle,title;
+		var io ,type, style,bundle,title;
 		for(var i = 0;i<database.length;++i){
 			if(urlid==database[i].ID){
 				
@@ -40,7 +40,7 @@
 				title = io.TITLE;
 				bundle = database[i].BUNDLE;
 				style= database[i].STYLE;
-				dataSetType = database[i].BUNDLE[0].dataSetType;
+				type = database[i].BUNDLE[0].type;
 			}
 		}
 		//ajax 请求 获取字段对应的值 生成图表
@@ -50,7 +50,7 @@
 	$.ajax({
 		contentType: 'application/json',
 		url: basePath + "CHART/DATA",
-		dataSetType: 'POST',
+		type: 'POST',
 		dataType: 'json',
 		data: JSON.stringify(io),
 		success: function(chartCont) {
@@ -67,7 +67,7 @@
 				x1.push(chartCont[i][x]);
 				y1.push(chartCont[i][y]);
 			}
-			switch (dataSetType) {
+			switch (type) {
 
 				case 'bar':
 					;
@@ -82,7 +82,7 @@
 						tooltip: {
 							trigger: 'axis',
 							axisPointer: {
-								dataSetType: 'shadow'
+								type: 'shadow'
 							}
 						},
 						legend: {
@@ -96,7 +96,7 @@
 							top: 'center',
 							feature: {
 								// dataView: {show: true, readOnly: false},
-								// magicType: {show: true, dataSetType: ['line', 'bar', 'stack', 'tiled']},
+								// magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
 								restore: {
 									show: true
 								},
@@ -107,18 +107,18 @@
 						},
 						calculable: true,
 						xAxis: {
-							dataSetType: 'category',
+							type: 'category',
 							axisTick: {
 								show: true
 							},
 							data: x1
 						},
 						yAxis: {
-							dataSetType: 'category'
+							type: 'category'
 						},
 						series: [{
-							dataSetName: y,
-							dataSetType: dataSetType,
+							name: y,
+							type: type,
 							data: y1
 						}]
 
@@ -141,10 +141,10 @@
 					for (var i in chartCont) {
 						x1.push(chartCont[i][x]);
 						var o = {
-							dataSetName: '',
+							name: '',
 							value: ''
 						};
-						o.dataSetName = chartCont[i][x];
+						o.name = chartCont[i][x];
 						o.value = chartCont[i][y];
 						arr.push(o);
 					}
@@ -158,7 +158,7 @@
 						       	trigger: 'item',
 						        formatter: "{a} <br/>{b} : {c} ({d}%)",
 						        axisPointer: {
-						            dataSetType: 'shadow'
+						            type: 'shadow'
 						        }
 						    },
 					        legend: {       	
@@ -178,8 +178,8 @@
 						    },
 						    calculable: true,
 					        series: [{
-					            dataSetName: 'Forest',
-					            dataSetType: 'pie',
+					            name: 'Forest',
+					            type: 'pie',
 					            data: arr,
 					            itemStyle: {
 					                emphasis: {
@@ -229,12 +229,12 @@
 						},
 						xAxis:{},
 						yAxis:{
-							dataSetType: 'time'
+							type: 'time'
 						},
 						series:[{
 							symbolSize: 5,
         					data: arr,
-        					dataSetType: "scatter"
+        					type: "scatter"
 						}]
 					}
 			}
@@ -243,7 +243,7 @@
 			var mychart = echarts.init($('#echart')[0]);
 			mychart.setOption(option);
 			$( "#echart" ).resizable();
-			$( "#echart" ).append('<div dataSetID="wh"></div>')
+			$( "#echart" ).append('<div id="wh"></div>')			
 			$('#echart').bind('resize',function(){
 				mychart.resize();
 				var _w =$('#echart').width();
@@ -262,8 +262,8 @@
 
 	</script> 
 	
-	<script dataSetType="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/echarts.js"></script>
-	<script dataSetType="text/javascript" src="js/theme.js"></script>
+	<script type="text/javascript" src="js/theme.js"></script>	
 </body>
 </html>

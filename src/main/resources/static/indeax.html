@@ -6,19 +6,19 @@
 </head>
 <body>
 	
-	<div dataSetID="a" style="height: 500px"></div>
+	<div id="a" style="height: 500px"></div>
 	<script src="js/echarts.js"></script>
 	<script>
 		// 时间排序
 		sessionStorage.asd = 111;
-		Array.prototype.distinct = function (dataSetType){
+		Array.prototype.distinct = function (type){
 		 var arr = this,
 		  len = arr.length;
 		 arr.sort(function(a,b){  //对数组进行排序才能方便比较
-			 if (dataSetType == 'string') {
+			 if (type == 'string') {
 			 	return a[0] > b[0]
 			 }
-			 if (dataSetType=='date') {
+			 if (type=='date') {
 			 	return Date.parse(a) - Date.parse(b);
 			 }
 		  	
@@ -64,10 +64,10 @@
 				dimensions: arr,
 				source : data 
 			},
-			xAxis: {dataSetType: 'category'},
-		    yAxis: {dataSetType : 'time'},
+			xAxis: {type: 'category'},
+		    yAxis: {type : 'time'},
 			series :[
-				{dataSetType: 'bar'}
+				{type: 'bar'}
 			]
 		}
 
@@ -103,13 +103,13 @@
 </head>
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div dataSetID="main1" style="height:200px"></div>
-    <div dataSetID="main2" style="height:200px"></div>
-    <div dataSetID="main3" style="height:200px"></div>
-    <div dataSetID="main4" style="height:200px"></div>
+    <div id="main1" style="height:200px"></div>
+    <div id="main2" style="height:200px"></div>
+    <div id="main3" style="height:200px"></div>
+    <div id="main4" style="height:200px"></div>
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-    <script dataSetType="text/javascript">
+    <script type="text/javascript">
         // 路径配置
         require.config({
             paths: {
@@ -152,14 +152,14 @@
                         feature : {
                             mark : {show: true},
                             dataView : {show: true, readOnly: false},
-                            magicType : {show: true, dataSetType: ['line', 'bar', 'stack', 'tiled']},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
                             restore : {show: true},
                             saveAsImage : {show: true}
                         }
                     },
                     xAxis : [
                         {
-                            dataSetType : 'category', //x轴为类目类型
+                            type : 'category', //x轴为类目类型
                             axisLabel:{
                                 show:true,
                                 interval:0,
@@ -170,12 +170,12 @@
                     }],
                     yAxis : [
                         {
-                            dataSetType : 'value'  //y轴为值类型
+                            type : 'value'  //y轴为值类型
                         }
                     ],
                     series : [{  
-                        dataSetName:'设定温度',
-                        dataSetType:'line',
+                        name:'设定温度',
+                        type:'line',
                         smooth:true,
                         data:[55,55,55,55,55,55,55,55,55,55]
                     }]
@@ -195,14 +195,14 @@
                         feature : {
                             mark : {show: true},
                             dataView : {show: true, readOnly: false},
-                            magicType : {show: true, dataSetType: ['line', 'bar', 'stack', 'tiled']},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
                             restore : {show: true},
                             saveAsImage : {show: true}
                         }
                     },
                     xAxis : [
                         {
-                            dataSetType : 'category', //x轴为类目类型
+                            type : 'category', //x轴为类目类型
                             axisLabel:{
                                 show:true,
                                 interval:0,
@@ -213,12 +213,12 @@
                     }],
                     yAxis : [
                         {
-                            dataSetType : 'value'  //y轴为值类型
+                            type : 'value'  //y轴为值类型
                         }
                     ],
                     series : [{  
-                        dataSetName:'进水温度',
-                        dataSetType:'line',
+                        name:'进水温度',
+                        type:'line',
                         smooth:true,
                         data:[15,15,16,18,18,19,19,19,19,19]
                     }]
@@ -238,14 +238,14 @@
                         feature : {
                             mark : {show: true},
                             dataView : {show: true, readOnly: false},
-                            magicType : {show: true, dataSetType: ['line', 'bar', 'stack', 'tiled']},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
                             restore : {show: true},
                             saveAsImage : {show: true}
                         }
                     },
                     xAxis : [
                         {
-                            dataSetType : 'category', //x轴为类目类型
+                            type : 'category', //x轴为类目类型
                             axisLabel:{
                                 show:true,
                                 interval:0,
@@ -256,12 +256,12 @@
                     }],
                     yAxis : [
                         {
-                            dataSetType : 'value'  //y轴为值类型
+                            type : 'value'  //y轴为值类型
                         }
                     ],
                     series : [{  
-                        dataSetName:'出水温度',
-                        dataSetType:'line',
+                        name:'出水温度',
+                        type:'line',
                         smooth:true,
                         data:[20,25,30,35,38,44,46,48,53,56]
                     }]
@@ -281,14 +281,14 @@
                         feature : {
                             mark : {show: true},
                             dataView : {show: true, readOnly: false},
-                            magicType : {show: true, dataSetType: ['line', 'bar', 'stack', 'tiled']},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
                             restore : {show: true},
                             saveAsImage : {show: true}
                         }
                     },
                     xAxis : [
                         {
-                            dataSetType : 'category', //x轴为类目类型
+                            type : 'category', //x轴为类目类型
                             axisLabel:{
                                 show:true,
                                 interval:0,
@@ -299,12 +299,12 @@
                     }],
                     yAxis : [
                         {
-                            dataSetType : 'value'  //y轴为值类型
+                            type : 'value'  //y轴为值类型
                         }
                     ],
                     series : [{  
-                        dataSetName:'环境温度',
-                        dataSetType:'line',
+                        name:'环境温度',
+                        type:'line',
                         smooth:true,
                         data:[15,15,15,15,15,15,15,15,15,15]
                     }]

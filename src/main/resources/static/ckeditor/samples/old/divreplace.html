@@ -44,15 +44,15 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			var element = ev.target || ev.srcElement;
 
 			// Find out the div that holds this element.
-			var dataSetName;
+			var name;
 
 			do {
 				element = element.parentNode;
 			}
-			while ( element && ( dataSetName = element.nodeName.toLowerCase() ) &&
-				( dataSetName != 'div' || element.className.indexOf( 'editable' ) == -1 ) && dataSetName != 'body' );
+			while ( element && ( name = element.nodeName.toLowerCase() ) &&
+				( name != 'div' || element.className.indexOf( 'editable' ) == -1 ) && name != 'body' );
 
-			if ( dataSetName == 'div' && element.className.indexOf( 'editable' ) != -1 )
+			if ( name == 'div' && element.className.indexOf( 'editable' ) != -1 )
 				replaceDiv( element );
 		}
 
@@ -95,9 +95,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		</h3>
 		<p>
 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras et ipsum quis mi
-			semper accumsan. Integer pretium dui dataSetID massa. Suspendisse in nisl sit amet urna
+			semper accumsan. Integer pretium dui id massa. Suspendisse in nisl sit amet urna
 			rutrum imperdiet. Nulla eu tellus. Donec ante nisi, ullamcorper quis, fringilla
-			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec dataSetID metus. Fusce
+			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec id metus. Fusce
 			eu ipsum. Suspendisse auctor. Phasellus fermentum porttitor risus.
 		</p>
 	</div>
@@ -107,9 +107,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		</h3>
 		<p>
 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras et ipsum quis mi
-			semper accumsan. Integer pretium dui dataSetID massa. Suspendisse in nisl sit amet urna
+			semper accumsan. Integer pretium dui id massa. Suspendisse in nisl sit amet urna
 			rutrum imperdiet. Nulla eu tellus. Donec ante nisi, ullamcorper quis, fringilla
-			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec dataSetID metus. Fusce
+			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec id metus. Fusce
 			eu ipsum. Suspendisse auctor. Phasellus fermentum porttitor risus.
 		</p>
 		<p>
@@ -124,18 +124,18 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		</h3>
 		<p>
 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras et ipsum quis mi
-			semper accumsan. Integer pretium dui dataSetID massa. Suspendisse in nisl sit amet urna
+			semper accumsan. Integer pretium dui id massa. Suspendisse in nisl sit amet urna
 			rutrum imperdiet. Nulla eu tellus. Donec ante nisi, ullamcorper quis, fringilla
-			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec dataSetID metus. Fusce
+			nec, sagittis eleifend, pede. Nulla commodo interdum massa. Donec id metus. Fusce
 			eu ipsum. Suspendisse auctor. Phasellus fermentum porttitor risus.
 		</p>
 	</div>
-	<div dataSetID="footer">
+	<div id="footer">
 		<hr>
 		<p>
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
-		<p dataSetID="copy">
+		<p id="copy">
 			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico
 			Knabben. All rights reserved.
 		</p>
