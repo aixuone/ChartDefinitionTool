@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ChartDefinitionTool:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ChartDefinitionTool-1.3.3.RELEASE.war">
+      <element id="artifact" artifact-name="ChartDefinitionTool:war exploded" />
+    </root>
+  </artifact>
+</component>
