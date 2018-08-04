@@ -2,26 +2,33 @@ package com.tygps.chart.web;
 
 import com.tygps.chart.domain.ChartDefinition;
 import com.tygps.chart.domain.ChartRelatedColumn;
-import com.tygps.chart.domain.RelatedColumn;
+import com.tygps.chart.domain.ColumnRelation;
 import com.tygps.chart.service.ChartResponse;
 import com.tygps.chart.service.ChartService;
 import com.tygps.chart.tools.ChartUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @RestController
+@RequestMapping("charts")
 public class ChartController {
 
     @Autowired
     private ChartService chartService;
 
+    @RequestMapping(value="/data/{userID}/{chartID}", method = GET)
+    public ChartResponse getData(@PathVariable String userID, @PathVariable String chartID){
 
-    @RequestMapping(value ="/charts", method = RequestMethod.POST)
+        System.out.println("GET请求：获取表单数据。userID="+userID);
+        chartService.getData(userID, chartID);
+        return ChartUtil.returnSuccessResponse("");
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
     public ChartResponse saveChartDefinition(@RequestBody ChartDefinition chart ){
 
 
@@ -32,24 +39,23 @@ public class ChartController {
         return ChartUtil.returnSuccessResponse(chartID);
     }
 
-    @RequestMapping(value = "/charts/columns/relation", method = RequestMethod.GET)
+    @RequestMapping(value = "/columns/relation", method = GET)
     public ChartResponse getRelatedColumns(){
 
         System.out.println("GET请求：获取穿透字段。");
-        List<RelatedColumn> columns = chartService.getRelatedColumns();
+        List<ColumnRelation> columns = chartService.getRelatedColumns();
 
         return ChartUtil.returnSuccessResponse(columns);
 
     }
 
-    @RequestMapping(value = "/charts/columns/relation", method = RequestMethod.POST)
+    @RequestMapping(value = "/columns/relation", method = RequestMethod.POST)
     public ChartResponse addRelatedColumns(@RequestBody ChartRelatedColumn column){
 
         System.out.println("GET请求：新增穿透字段。");
         String uuid = chartService.addRelatedColumns(column);
 
         return ChartUtil.returnSuccessResponse(uuid);
-//        return "add related column";
     }
 
     public void setChartService(ChartService chartService){

@@ -17,8 +17,8 @@ public class ChartDefinition {
     private List<ColumnRelation> columnRelations;
     private List<Map> columnAxis;
     private List<ColumnAxis> columnAxises;
-    private List<Map> columnSerise;
-    private List<ColumnSerise> columnSerises;
+    private List<Map> columnSeries;
+    private List<ColumnSeries> columnSerises;
 
     public List<ColumnRelation> getColumnRelations() {
         return columnRelations;
@@ -36,11 +36,11 @@ public class ChartDefinition {
         this.columnAxises = columnAxises;
     }
 
-    public List<ColumnSerise> getColumnSerises() {
+    public List<ColumnSeries> getColumnSerises() {
         return columnSerises;
     }
 
-    public void setColumnSerises(List<ColumnSerise> columnSerises) {
+    public void setColumnSerises(List<ColumnSeries> columnSerises) {
         this.columnSerises = columnSerises;
     }
 
@@ -55,7 +55,7 @@ public class ChartDefinition {
         columnRelations = new ArrayList<ColumnRelation>();
         for (Map map : columnRelation) {
             ColumnRelation tmp = new ColumnRelation();
-            tmp.setColumnID((String) map.get(ChartGC.COLUMN_ID));
+            tmp.setRelatedColumnID((String) map.get(ChartGC.COLUMN_ID));
             tmp.setRelatedColumnUUID((String) map.get(ChartGC.COLUMN_RELATED_UUID));
             columnRelations.add(tmp);
         }
@@ -77,16 +77,16 @@ public class ChartDefinition {
         }
     }
 
-    public List<Map> getColumnSerise() {
-        return columnSerise;
+    public List<Map> getColumnSeries() {
+        return columnSeries;
     }
 
-    public void setColumnSerise(List<Map> columnSerise) {
-        this.columnSerise = columnSerise;
+    public void setColumnSeries(List<Map> columnSeries) {
+        this.columnSeries = columnSeries;
 
-        columnSerises = new ArrayList<ColumnSerise>();
-        for (Map map : columnSerise) {
-            ColumnSerise tmp = new ColumnSerise();
+        columnSerises = new ArrayList<ColumnSeries>();
+        for (Map map : columnSeries) {
+            ColumnSeries tmp = new ColumnSeries();
             tmp.setColumnID((String) map.get(ChartGC.COLUMN_ID));
             columnSerises.add(tmp);
         }

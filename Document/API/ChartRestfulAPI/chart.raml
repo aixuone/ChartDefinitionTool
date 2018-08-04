@@ -1,5 +1,5 @@
 #%RAML 1.0
-title: 表单定义工具API
+title: ChartDefinitionTool
 types:
   columnValue:
     description: 值字段
@@ -31,7 +31,7 @@ types:
           - DATE
           - TIMESTAMP
           - TEXT
-  columnSerise:
+  columnSeries:
     description: 系列字段
     properties:
       columnID:
@@ -66,14 +66,9 @@ types:
 baseUri: http://www.tygps.com/Chart/{version}
 version: v1
 /dataSets:
-  /{userId}:
+  /{userID}:
       get:
-        description: 根据用户权限获取数据集列表
-        queryParameters:
-          token:
-            displayName: userId
-            type: string
-            description: "用户ID"
+        description: 根据用户ID获取数据集列表
         responses:
           200:
             body:
@@ -96,34 +91,30 @@ version: v1
                       }
                     ]
                   }
-  /{dataSetID}/columns:
-    get:
-      description: 获取数据集字段列表
-      queryParameters:
-        dataSetID:
-          displayName: dataSetID
-          type: string
-          description: "数据集ID"
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                {
-                  "success":"true",
-                  "status": 200,
-                  "message":"success",
-                  "data":[
-                    {
-                      "columnID":"brand",
-                      "columnName":"品牌"
-                    },
-                    {
-                      "columnID":"customerID",
-                      "columnName":"客户ID"
-                    }
-                  ]
-                }
+  /{dataSetID}:
+    /columns:
+      get:
+        description: 根据数据集ID获取字段列表
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success":"true",
+                    "status": 200,
+                    "message":"success",
+                    "data":[
+                      {
+                        "columnID":"brand",
+                        "columnName":"品牌"
+                      },
+                      {
+                        "columnID":"customerID",
+                        "columnName":"客户ID"
+                      }
+                    ]
+                  }
 /charts:
   post:
     description: 保存表单定义
@@ -154,9 +145,9 @@ version: v1
       columnAxis:
         description: 轴字段
         type: columnAxis[]
-      columnSerise?:
+      columnSeries?:
         description: 系列字段
-        type: columnSerise[]
+        type: columnSeries[]
     responses:
       200:
         body:
@@ -179,30 +170,26 @@ version: v1
                 description: 表单ID
   /data:
     /{chartID}:
-      get:
-       description: 获取表单数据
-       queryParameters:
-         chartID:
-           type: string
-           description: 表单ID
-       responses:
-         200:
-           body:
-             application/json:
-               properties:
-                 success:
-                   description: 成功标志
-                   type: string
-                   enum:
-                     - success
-                     - error
-                 message:
-                  type: string
-                  description: 返回信息
-                 status:
-                   type: string
-                   description: 返回状态
-
+      /{userID}:
+        get:
+         description: 根据用户编号和表单ID获取数据
+         responses:
+           200:
+             body:
+               application/json:
+                 properties:
+                   success:
+                     description: 成功标志
+                     type: string
+                     enum:
+                       - success
+                       - error
+                   message:
+                    type: string
+                    description: 返回信息
+                   status:
+                     type: string
+                     description: 返回状态
   /columns:
     /relation:
       get:

@@ -1,6 +1,6 @@
 package com.tygps.chart.domain;
 
-public class ColumnSerise {
+public class ColumnSeries {
     private String columnID;
 
     public String getColumnID() {
