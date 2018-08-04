@@ -17,13 +17,11 @@ public class DataSetController {
     @RequestMapping(value = "/dataSets/{userID}", method = RequestMethod.GET)
     @ResponseBody
     public ChartResponse getDataSets(@PathVariable String userID){
-//    public String getDataSets(HttpServletRequest request, @PathVariable String userId){
 
         System.out.println("GET请求：获取数据集。userID="+userID);
         List<DWFDataSet> dataSets  = dataSetService.getDataSets(userID);
 
         return ChartUtil.returnSuccessResponse(dataSets);
-//        return new HashMap().put("success", "true");
     }
 
     @RequestMapping(value="/dataSets/{dataSetID}/columns", method = RequestMethod.GET)

@@ -1,0 +1,254 @@
+#%RAML 1.0
+title: 表单定义工具API
+types:
+  columnValue:
+    description: 值字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnDispType:
+        description: 展现方式
+        type: string
+      columnPolymer? :
+        description: 聚合类型
+        type: string
+        enum:
+          - SUM
+          - COUNT
+  columnOption:
+    description: 条件字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnType:
+        description: 查询类型
+        type: string
+        default: TEXT
+        required: false
+        enum:
+          - DATE
+          - TIMESTAMP
+          - TEXT
+  columnSerise:
+    description: 系列字段
+    properties:
+      columnID:
+        type: string
+        description: 系列字段ID
+  columnAxis:
+    description: 轴字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnPolymer?:
+        description: 聚合方式
+        type: string
+        default: GROUP
+        enum:
+          - GROUP
+          - YEAR
+          - SEASON
+          - MONTH
+          - WEEK
+  columnRelation:
+    description: 筛选字段
+    properties:
+     columnID:
+       description: 字段ID
+       type: string
+     relatedColumnUUID:
+        description: 聚合字段UID
+        type: string
+
+baseUri: http://www.tygps.com/Chart/{version}
+version: v1
+/dataSets:
+  /{userId}:
+      get:
+        description: 根据用户权限获取数据集列表
+        queryParameters:
+          token:
+            displayName: userId
+            type: string
+            description: "用户ID"
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "success":"true",
+                    "status": 200,
+                    "message":"success",
+                    "data":[
+                      {
+                        "dataSetID":"0001",
+                        "dataSetName":"数据集1",
+                        "dataSetType":"MYSQL"
+                      },
+                      {
+                        "dataSetID":"0002",
+                        "dataSetName":"数据集2",
+                        "dataSetType":"DB2"
+                      }
+                    ]
+                  }
+  /{dataSetID}/columns:
+    get:
+      description: 获取数据集字段列表
+      queryParameters:
+        dataSetID:
+          displayName: dataSetID
+          type: string
+          description: "数据集ID"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "success":"true",
+                  "status": 200,
+                  "message":"success",
+                  "data":[
+                    {
+                      "columnID":"brand",
+                      "columnName":"品牌"
+                    },
+                    {
+                      "columnID":"customerID",
+                      "columnName":"客户ID"
+                    }
+                  ]
+                }
+/charts:
+  post:
+    description: 保存表单定义
+    queryParameters:
+      chartName:
+        description: 表单名称
+        displayName: chartName
+        type: string
+      chartTheme:
+        description: 表单主题
+        displayName: chartTheme
+        type: string
+      chartType:
+        description: 表单类型
+        type: string
+      dataSetID:
+        type: string
+        description: 数据集ID
+      columnValue:
+        description: 值字段
+        type: columnValue[]
+      columnOption? :
+        description: 条件字段
+        type: columnOption[]
+      columnRelation? :
+        description: 穿透字段
+        type: columnRelation[]
+      columnAxis:
+        description: 轴字段
+        type: columnAxis[]
+      columnSerise?:
+        description: 系列字段
+        type: columnSerise[]
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              success:
+                description: 成功标志
+                type: string
+                enum:
+                  - success
+                  - error
+              message:
+               type: string
+               description: 返回信息
+              status:
+                type: string
+                description: 返回状态
+              data:
+                type: string
+                description: 表单ID
+  /data:
+    /{chartID}:
+      get:
+       description: 获取表单数据
+       queryParameters:
+         chartID:
+           type: string
+           description: 表单ID
+       responses:
+         200:
+           body:
+             application/json:
+               properties:
+                 success:
+                   description: 成功标志
+                   type: string
+                   enum:
+                     - success
+                     - error
+                 message:
+                  type: string
+                  description: 返回信息
+                 status:
+                   type: string
+                   description: 返回状态
+
+  /columns:
+    /relation:
+      get:
+       description: 获取所有穿透字段列表
+       responses:
+         200:
+           body:
+             application/json:
+               example: |
+                 {
+                  "success":"true",
+                  "status":200,
+                  "message":"success",
+                  "data":[
+                    {
+                      "relatedColumnUUID":"001",
+                      "relatedColumnName":"机器品牌"
+                    },
+                    {
+                      "relatedColumnUUID":"002",
+                      "relatedColumnName":"机器品牌"
+                    }
+                  ]
+                 }
+      post:
+       description: 新增穿透字段
+       queryParameters:
+         relatedColumnName:
+           displayName: realatedColumnName
+           type: string
+           description: 关联字段名称
+         relatedColumnID:
+          displayName: relatedColumnID
+          type: string
+          description: 绑定数据集字段ID
+       responses:
+         200:
+           body:
+             application/json:
+               example: |
+                 {
+                   "success":"true",
+                   "status":200,
+                   "message":"success",
+                   "data":
+                     {
+                      "relatedColumnUUID":"0001"
+                     }
+                 }

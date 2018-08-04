@@ -1,0 +1,58 @@
+#%RAML 1.0
+title: Book API
+types:
+  columnValue:
+    description: 值字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnDispType:
+        description: 展现方式
+        type: string
+      columnPolymer? :
+        description: 聚合类型
+        type: string
+        enum:
+          - SUM
+          - COUNT
+  columnOption:
+    description: 条件字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnType:
+        description: 查询类型
+        type: string
+        default: TEXT
+        required: false
+        enum:
+          - DATE
+          - TIMESTAMP
+          - TEXT
+  columnAxis:
+    description: 轴字段
+    properties:
+      columnID:
+        description: 字段ID
+        type: string
+      columnPolymer?:
+        description: 聚合方式
+        type: string
+        default: GROUP
+        enum:
+          - GROUP
+          - YEAR
+          - SEASON
+          - MONTH
+          - WEEK
+  columnRelation:
+    description: 筛选字段
+    properties:
+     columnID:
+       description: 字段ID
+       type: string
+     relatedColumnUUID:
+        description: 聚合字段UID
+        type: string
