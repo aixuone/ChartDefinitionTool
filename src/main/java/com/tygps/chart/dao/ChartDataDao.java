@@ -11,11 +11,6 @@ import java.util.Map;
 public class ChartDataDao {
     private JdbcTemplate jdbcTemplate;
 
-    public List<Map<String, Object>> selectSerise(String sql){
-        return jdbcTemplate.queryForList(sql);
-    }
-
-
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -23,5 +18,9 @@ public class ChartDataDao {
 
     public List<Map<String, Object>> selectChartData(String s) {
         return jdbcTemplate.queryForList(s);
+    }
+
+    public List<Map<String, Object>> select(String seriesResultSQL) {
+        return jdbcTemplate.queryForList(seriesResultSQL);
     }
 }

@@ -3,6 +3,7 @@ package com.tygps.chart.tools;
 import com.tygps.chart.domain.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,69 +18,50 @@ public class ChartDataUtil {
     }
 
     //当作查询结果
-    public static List<String> parseValue(List<ColumnValue> valueColumns, List<String> conflictFields) {
-        List<String> values = new ArrayList<String>();
+    public static void parseValue(List<ColumnValue> valueColumns, ChartDataSQL sql) {
 
         for (ColumnValue valueColumn : valueColumns) {
-            conflictFields.add(valueColumn.getColumnID());
-            if(ChartPolymer.COUNT.equals(valueColumn.getColumnPolymer())){
-                values.add("COUNT("+valueColumn.getColumnID()+") AS COUNT_"+valueColumn.getColumnID());
-            }else if(ChartPolymer.SUM.equals(valueColumn.getColumnPolymer())){
-                values.add("COUNT(INTEGER("+valueColumn.getColumnID()+")) AS COUNT_"+valueColumn.getColumnID());
+            sql.setConflictFields(valueColumn.getColumnID());
+            if(ChartPolymer.COUNT.toString().equals(valueColumn.getColumnPolymer())){
+                sql.setValueFields("COUNT("+valueColumn.getColumnID()+") " +
+                        "AS COUNT_"+valueColumn.getColumnID(), ChartDataSQL.Index.TAIL);
+            }else if(ChartPolymer.SUM.toString().equals(valueColumn.getColumnPolymer())){
+                sql.setValueFields("SUM(INTEGER("+valueColumn.getColumnID()+")) " +
+                        "AS SUM_"+valueColumn.getColumnID(), ChartDataSQL.Index.TAIL);
             }else{
-                values.add(valueColumn.getColumnID());
+                sql.setValueFields(valueColumn.getColumnID(), ChartDataSQL.Index.TAIL);
             }
         }
-
-        return values;
     }
 
-    public static List<String> parseAxis(List<ColumnAxis> axisColumns, List<String> conflictFields) {
-        List<String> groups = new ArrayList<String>();
+    public static void parseAxis(List<ColumnAxis> axisColumns, ChartDataSQL sql) {
         for (ColumnAxis axisColumn : axisColumns) {
-            conflictFields.add(axisColumn.getColumnID());
-            groups.add(axisColumn.getColumnID());
+            sql.setConflictFields(axisColumn.getColumnID());
+            if(ChartPolymer.GROUP.toString().equals(axisColumn.getColumnPolymer())) {
+                sql.setGroupFields(axisColumn.getColumnID(), ChartDataSQL.Index.HEAD);
+            }
+            sql.setValueFields(axisColumn.getColumnID(), ChartDataSQL.Index.TAIL);
+            sql.setOrderFields(axisColumn.getColumnID(), ChartDataSQL.Index.HEAD);
         }
-        return groups;
     }
 
     //系列暂时只支持一个字段
-    public static List<String> parseSeries(List<ColumnSeries> seriesColumns, List<String> conflictFields) {
+    public static void parseSeries(List<ColumnSeries> seriesColumns, ChartDataSQL sql) {
         ColumnSeries series = seriesColumns.get(0);
-        if(conflictFields.contains(series.getColumnID())) return null;
-        List<String> serieses = new ArrayList<String>();
-        serieses.add(series.getColumnID());
-        return serieses;
+        if(sql.getConflictFields().contains(series.getColumnID())) return ;
+        sql.setGroupFields(series.getColumnID(), ChartDataSQL.Index.TAIL);
+        sql.setValueFields(series.getColumnID(), ChartDataSQL.Index.TAIL);
+        sql.setOrderFields(series.getColumnID(), ChartDataSQL.Index.TAIL);
     }
-
+/*
     public static String buildSeriesSQL(String dataSetID, List<String> serieses) {
         String sql = "SELECT "+serieses.get(0) + "FROM "+dataSetID+" GROUP BY "+serieses;
         return sql;
-    }
+    }*/
 
-    public static String buildChartDataSQL(String dataSetID, List<String> selFields, List<String> groupFields,
-                                           List<String> seriesFields) {
-        StringBuilder sql = new StringBuilder("SELECT ");
-        for (String selField : selFields) {
-            sql.append(selField+",");
-        }
-        sql.delete(sql.length(), 1);
-        sql.append(" FROM "+ dataSetID);
-        for (String groupField : groupFields) {
-            sql.append(" GROUP BY "+groupFields+",");
-        }
 
-        sql.delete(sql.length(), 1);
-        for (String seriesField : seriesFields) {
-            sql.append(" ORDER BY "+seriesField+",");
-        }
-        sql.delete(sql.length(), 1);
-        return sql.toString();
-    }
-
-    public static List<List> convertEchartStyle(List<Map<String, Object>> middleResult,
-                                                List<String> seriesFields, List<String> axisFields) {
-        List<List> retList = new ArrayList<List>();
+    public static Map convertEchartStyle(List<Map<String, Object>> middleResult,
+            List<ColumnAxis> axisColumns, List<ColumnValue> valueColumns, List<ColumnSeries> seriesColumns, List<String> retSeries) {
 
         /*
          	    Forest	Steppe	Desert	Wetland
@@ -89,16 +71,92 @@ public class ChartDataUtil {
         2015	334     0       154     99
         2016	0       290     190     40
          */
-        //系列字段转换
-        if(seriesFields.size()>0){
-            retList.add(seriesFields);
-        }else{
-            retList.add(new ArrayList());
+
+        //轴->系列->值
+
+        Map retInfo = new HashMap();
+
+        Map<String, List<String>> retAxises = new HashMap<String, List<String>>();
+//        Map<String, Map<String, List>> retValues = new HashMap<String, Map<String, List>>();
+        List[] valuesAry = new ArrayList[retSeries.size()];
+
+        int seriesIndex = 0;
+        Map<String, List<Integer>> needAddNull = new HashMap<String, List<Integer>>();
+        if(retSeries==null || retSeries.size()==0){
+            retSeries.add("PUBLIC");
+        }
+        for (Map<String, Object> tmp : middleResult) {
+            for (ColumnAxis axisColumn : axisColumns) {
+                List axises = ChartUtil.hasAndReturnMapFromList(retAxises, axisColumn.getColumnID());
+                if(!axises.contains(tmp.get(axisColumn.getColumnID()))){
+                    axises.add(tmp.get(axisColumn.getColumnID()));
+                    break;
+                }
+            }
+
+
+                for (ColumnValue valueColumn : valueColumns) {
+                    String fieldAlias = ChartDataUtil.returnFieldAlias(valueColumn.getColumnID(),
+                            ChartPolymer.valueOf(valueColumn.getColumnPolymer()));
+                    if (valuesAry[seriesIndex] == null) valuesAry[seriesIndex] = new ArrayList();
+                    if (seriesColumns.size() > 0) {
+                        //暂时只支持单系列字段
+                        //根据系列个数建立值的分组
+                        if (retSeries.get(0).equals("PUBLIC") || !retSeries.get(seriesIndex).equals(
+                                tmp.get(seriesColumns.get(0).getColumnID()))) {
+                            valuesAry[seriesIndex].add(valuesAry[seriesIndex].size(), 0);
+                            seriesIndex++;
+                        }
+                        valuesAry[seriesIndex].add(tmp.get(fieldAlias));
+                    }
+                }
+                if(seriesIndex==retSeries.size()-1){
+                    seriesIndex = 0;
+                }else {
+                    seriesIndex++;
+                }
         }
 
-        //数据转换
-        List dataList =
+        retInfo.put("axis", retAxises);
+        retInfo.put("value", valuesAry);
 
+        return retInfo;
+    }
 
+    public static String getSeriesResultSQL(String dataSetID, List<ColumnSeries> serieses) {
+
+        StringBuilder sqlB = new StringBuilder("SELECT DISTINCT ");
+        String seriesField = "";
+        for (ColumnSeries s : serieses) {
+            seriesField+=s.getColumnID()+",";
+        }
+        seriesField = seriesField.substring(0, seriesField.length()-1);
+        sqlB.append(seriesField);
+
+        sqlB.append(" FROM "+dataSetID);
+
+        sqlB.append(" GROUP BY "+seriesField);
+
+        sqlB.append(" ORDER BY "+seriesField);
+
+        return sqlB.toString();
+    }
+
+    public static List<String> getReturnSeries(List<Map<String, Object>> serieses) {
+        List<String> retSerieses = new ArrayList<String>();
+
+        for (Map<String, Object> tmp : serieses) {
+            for (String s : tmp.keySet()) {
+                retSerieses.add((String) tmp.get(s));
+            }
+        }
+        return retSerieses;
+    }
+
+    public static String returnFieldAlias(String fieldName, ChartPolymer polymer){
+        if(polymer!=null){
+            return polymer.toString()+"_"+fieldName;
+        }
+        return fieldName;
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -24,8 +25,8 @@ public class ChartController {
     public ChartResponse getData(@PathVariable String userID, @PathVariable String chartID){
 
         System.out.println("GET请求：获取表单数据。userID="+userID);
-        chartService.getData(userID, chartID);
-        return ChartUtil.returnSuccessResponse("");
+        Map retInfo = chartService.getChartData(userID, chartID);
+        return ChartUtil.returnSuccessResponse(retInfo);
     }
 
     @RequestMapping(method = RequestMethod.POST)

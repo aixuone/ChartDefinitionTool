@@ -26,6 +26,12 @@ public class ColumnValue{
     }
 
     public void setColumnPolymer(String columnPolymer) {
-        this.columnPolymer = ChartPolymer.valueOf(columnPolymer).toString();
+        if(columnPolymer!=null) {
+            if(ChartPolymer.valueOf(columnPolymer)==null){
+                System.out.println("值字段聚合方式不支持="+columnPolymer);
+            }else {
+                this.columnPolymer = ChartPolymer.valueOf(columnPolymer).toString();
+            }
+        }
     }
 }

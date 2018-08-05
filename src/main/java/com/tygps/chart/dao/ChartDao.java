@@ -1,5 +1,6 @@
 package com.tygps.chart.dao;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.tygps.chart.domain.*;
 import com.tygps.chart.tools.ChartSQLInsert;
 import com.tygps.chart.tools.ChartSQLSelect;
@@ -11,6 +12,7 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.tygps.chart.tools.ChartSQLSelect.*;
 
@@ -72,9 +74,9 @@ public class ChartDao {
             chartID, columnRelation.getRelatedColumnUUID()});
         }
 
-        for (ColumnSeries columnSeries : chart.getColumnSerises()) {
-            jdbcTemplate.update(ChartSQLInsert.INSERT_COLUMN_SERIES, new Object[]{columnSeries.getColumnID(),
-                    chartID, columnSeries.getColumnID()});
+        for (ColumnSeries columnSeries : chart.getColumnSerieses()) {
+            jdbcTemplate.update(ChartSQLInsert.INSERT_COLUMN_SERIES,
+                    new Object[]{chartID, columnSeries.getColumnID()});
         }
         jdbcTemplate.update(ChartSQLInsert.INSERT_CHART_DEFINITION, new Object[]{chartID, chart.getChartType(),
                 chart.getChartTheme(), chart.getDataSetID() });
@@ -119,8 +121,8 @@ public class ChartDao {
         for (Object o : rstList) {
             LinkedCaseInsensitiveMap tmp = (LinkedCaseInsensitiveMap) o;
             ColumnAxis column = new ColumnAxis();
-            column.setColumnID((String) tmp.get("COLUMN_VALUE_ID"));
-            column.setColumnPolymer((String) tmp.get("COLUMN_VALUE_POLYMER"));
+            column.setColumnID((String) tmp.get("COLUMN_AXIS_ID"));
+            column.setColumnPolymer((String) tmp.get("COLUMN_AXIS_POLYMER"));
             columns.add(column);
         }
         return columns;
@@ -132,9 +134,21 @@ public class ChartDao {
         for (Object o : rstList) {
             LinkedCaseInsensitiveMap tmp = (LinkedCaseInsensitiveMap) o;
             ColumnSeries column = new ColumnSeries();
-            column.setColumnID((String) tmp.get("COLUMN_VALUE_ID"));
+            column.setColumnID((String) tmp.get("COLUMN_SERIES_ID"));
             columns.add(column);
         }
         return columns;
+    }
+
+    public ChartDefinition selectChartDefinition(String chartID) {
+        Map tmp = jdbcTemplate.queryForMap(ChartSQLSelect.SELECT_CHART_DEFINITION, chartID);
+
+        ChartDefinition chart = new ChartDefinition();
+        chart.setChartName((String) tmp.get("CHART_NAME"));
+        chart.setChartTheme((String) tmp.get("CHART_THEME"));
+        chart.setChartType((String) tmp.get("CHART_TYPE"));
+        chart.setDataSetID((String) tmp.get("CHART_DATASET"));
+
+        return chart;
     }
 }

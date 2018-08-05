@@ -15,7 +15,8 @@ public class ChartSQLSelect {
     //T_CHART_COLUMN_AXIS
     public final static String SELECT_COLUMN_AXIS_BY_CHARTID = "SELECT * FROM T_CHART_COLUMN_AXIS "+
             " WHERE CHART_DEF_PK=?";
-
     public final static String SELECT_COLUMN_SERIES_BY_CHARTID = "SELECT * FROM T_CHART_COLUMN_SERIES" +
-            "WHERE CHART_DEF_PK=?";
+            " WHERE CHART_DEF_PK=?";
+    public static final String SELECT_CHART_DEFINITION = "SELECT * FROM T_CHART_DEFINITION"
+            + " WHERE CHART_ID=?";
 }

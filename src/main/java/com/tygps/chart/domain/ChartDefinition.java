@@ -18,7 +18,7 @@ public class ChartDefinition {
     private List<Map> columnAxis;
     private List<ColumnAxis> columnAxises;
     private List<Map> columnSeries;
-    private List<ColumnSeries> columnSerises;
+    private List<ColumnSeries> columnSerieses;
 
     public List<ColumnRelation> getColumnRelations() {
         return columnRelations;
@@ -36,12 +36,12 @@ public class ChartDefinition {
         this.columnAxises = columnAxises;
     }
 
-    public List<ColumnSeries> getColumnSerises() {
-        return columnSerises;
+    public List<ColumnSeries> getColumnSerieses() {
+        return columnSerieses;
     }
 
-    public void setColumnSerises(List<ColumnSeries> columnSerises) {
-        this.columnSerises = columnSerises;
+    public void setColumnSerieses(List<ColumnSeries> columnSerieses) {
+        this.columnSerieses = columnSerieses;
     }
 
     public List<Map> getColumnRelation() {
@@ -84,11 +84,11 @@ public class ChartDefinition {
     public void setColumnSeries(List<Map> columnSeries) {
         this.columnSeries = columnSeries;
 
-        columnSerises = new ArrayList<ColumnSeries>();
+        columnSerieses = new ArrayList<ColumnSeries>();
         for (Map map : columnSeries) {
             ColumnSeries tmp = new ColumnSeries();
             tmp.setColumnID((String) map.get(ChartGC.COLUMN_ID));
-            columnSerises.add(tmp);
+            columnSerieses.add(tmp);
         }
     }
 

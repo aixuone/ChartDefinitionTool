@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,35 +44,35 @@ public class ChartService {
         return relatedColumnUUID;
     }
 
-    public List<Map> getData(String userID, String chartID) {
-        String dataSetID = "";
+    public Map getChartData(String userID, String chartID) {
+
+        ChartDefinition chart = chartDao.selectChartDefinition(chartID);
+
+        String dataSetID = chart.getDataSetID();
         List<ColumnRelation> relatedColumns = chartDao.selectRelatedColumn(chartID);
+
         List<ColumnValue> valueColumns = chartDao.selectValueColumn(chartID);
         List<ColumnAxis> axisColumns = chartDao.selectAxisColumn(chartID);
         List<ColumnSeries> seriesColumns = chartDao.selectSeriesColumn(chartID);
 
         //series fields 不能在 axis column和 value column中出现，否则series作废
-        List<String> conflictFields = new ArrayList<String>();
 
-        ChartDataUtil.parseRelation(relatedColumns, conflictFields);
-        List<String> selFields = ChartDataUtil.parseValue(valueColumns, conflictFields);
-        List<String> groupFields = ChartDataUtil.parseAxis(axisColumns, conflictFields);
-        List<String> seriesFields = ChartDataUtil.parseSeries(seriesColumns, conflictFields);
-        groupFields.addAll(seriesFields);
+        ChartDataSQL sql = new ChartDataSQL(dataSetID);
+        ChartDataUtil.parseValue(valueColumns, sql);
+        System.out.println("值字段="+sql);
+        ChartDataUtil.parseAxis(axisColumns, sql);
+        System.out.println("轴字段="+sql);
+        ChartDataUtil.parseSeries(seriesColumns, sql);
+        System.out.println("系列字段="+sql);
 
-        if(seriesFields.size()>1) {
-            List retSeries = chartDataDao.selectSerise(
-                    ChartDataUtil.buildSeriesSQL(chartID, seriesFields));
 
-            if(retSeries.size()>0){
+        List<Map<String, Object>> middleResult = chartDataDao.selectChartData(sql.toString());
 
-            }
-        }
-
-        List<Map<String, Object>> middleResult = chartDataDao.selectChartData(ChartDataUtil.
-                buildChartDataSQL(dataSetID, selFields, groupFields, seriesFields));
-
-        ChartDataUtil.convertEchartStyle(middleResult, seriesFields);
-        return null;
+        List<Map<String, Object>> tmp = chartDataDao.select(
+                ChartDataUtil.getSeriesResultSQL(dataSetID, seriesColumns));
+        List<String> returnSeries  = ChartDataUtil.getReturnSeries(tmp);
+        Map retInfo = ChartDataUtil.convertEchartStyle(middleResult, axisColumns, valueColumns,
+                seriesColumns, returnSeries);
+        return retInfo;
     }
 }
